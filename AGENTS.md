@@ -32,7 +32,10 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Prefer Reactive forms instead of Template-driven ones
 - Do NOT use `ngClass`, use `class` bindings instead
 - Do NOT use `ngStyle`, use `style` bindings instead
+- Do NOT expose style-only properties as component inputs. Keep styling overrides in SCSS tokens/CSS custom properties (padding, margin, border, radius, colors, etc.).
+- Size can be an input when it changes component variants/behavior; visual styling values still belong to SCSS tokens.
 - When using external templates/styles, use paths relative to the component TS file.
+- Component name have always prefix Ai and also the selector
 
 ## State Management
 
@@ -54,3 +57,11 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 - Design services around a single responsibility
 - Use the `providedIn: 'root'` option for singleton services
 - Use the `inject()` function instead of constructor injection
+
+## Storybook Requirements
+
+- Every component MUST have Storybook stories.
+- Every component stories file MUST include a dedicated SCSS tokens story/section that exposes all supported CSS custom properties (design tokens) with interactive controls and default values.
+- Every component MUST show all supported features through stories (inputs, outputs/events, states, variants, and interactive behavior).
+- Keep the main/default story focused on functional API only (inputs/outputs/states/variants); put style token controls in a separate dedicated style/tokens story.
+- For inputs with finite options, use dropdown/select controls instead of free-text controls.

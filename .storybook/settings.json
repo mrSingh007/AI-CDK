@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "userSince": 1772530429737,
+  "checklist": {
+    "items": {
+      "ciTests": {
+        "status": "accepted"
+      },
+      "installA11y": {
+        "status": "skipped"
+      },
+      "publishStorybook": {
+        "status": "accepted"
+      },
+      "viewports": {
+        "status": "skipped"
+      },
+      "visualTests": {
+        "status": "skipped"
+      },
+      "whatsNewStorybook10": {
+        "status": "accepted"
+      },
+      "writeInteractions": {
+        "status": "skipped"
+      }
+    },
+    "widget": {}
+  }
+}

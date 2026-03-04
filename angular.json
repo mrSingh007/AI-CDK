@@ -2,9 +2,109 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": false
   },
   "newProjectRoot": "projects",
   "projects": {
+    "ai-cdk-ui": {
+      "projectType": "library",
+      "root": "projects/ai-cdk-ui",
+      "sourceRoot": "projects/ai-cdk-ui",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ai-cdk-ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ai-cdk-ui/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/ai-cdk-ui/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ai-cdk-chat": {
+      "projectType": "library",
+      "root": "projects/ai-cdk-chat",
+      "sourceRoot": "projects/ai-cdk-chat/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ai-cdk-chat/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ai-cdk-chat/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/ai-cdk-chat/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "storybook-host": {
+      "projectType": "application",
+      "root": "projects/storybook-host",
+      "sourceRoot": "projects/storybook-host/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "projects/storybook-host/src/main.ts",
+            "index": "projects/storybook-host/src/index.html",
+            "tsConfig": "projects/storybook-host/tsconfig.app.json",
+            "styles": [
+              "projects/storybook-host/src/styles.css"
+            ],
+            "assets": []
+          },
+          "configurations": {
+            "production": {
+              "optimization": true
+            },
+            "development": {
+              "optimization": false
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "storybook-host:build",
+            "port": 6006,
+            "compodoc": false
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": ".storybook",
+            "browserTarget": "storybook-host:build",
+            "outputDir": "storybook-static",
+            "compodoc": false
+          }
+        }
+      }
+    }
   }
 }

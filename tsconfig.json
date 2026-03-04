@@ -3,6 +3,30 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@ai-cdk/ui": [
+        "./projects/ai-cdk-ui/src/public-api.ts"
+      ],
+      "@ai-cdk/ui/Skeleton": [
+        "./projects/ai-cdk-ui/Skeleton/public-api.ts"
+      ],
+      "@ai-cdk/ui/Card": [
+        "./projects/ai-cdk-ui/Card/public-api.ts"
+      ],
+      "@ai-cdk/ui/Spinner": [
+        "./projects/ai-cdk-ui/Spinner/public-api.ts"
+      ],
+      "@ai-cdk/ui/Questionnaire": [
+        "./projects/ai-cdk-ui/Questionnaire/public-api.ts"
+      ],
+      "@ai-cdk/chat": [
+        "./projects/ai-cdk-chat/src/public-api.ts"
+      ],
+      "@ai-cdk/chat/SideBar": [
+        "./projects/ai-cdk-chat/SideBar/public-api.ts"
+      ]
+    },
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -13,7 +37,8 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "moduleResolution": "bundler"
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -21,5 +46,19 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/ai-cdk-ui/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ai-cdk-ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ai-cdk-chat/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ai-cdk-chat/tsconfig.spec.json"
+    }
+  ]
 }

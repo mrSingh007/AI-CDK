@@ -1,0 +1,53 @@
+<section class="ai-questionnaire" aria-live="polite">
+  @if (currentQuestion(); as question) {
+    <h2 class="ai-questionnaire__question">{{ question.question }}</h2>
+
+    <div class="ai-questionnaire__options" role="group" [attr.aria-label]="question.question">
+      @if (currentMultiSelect()) {
+        @for (option of question.options; track option) {
+          <label class="ai-questionnaire__multi-option">
+            <input
+              class="ai-questionnaire__multi-input"
+              type="checkbox"
+              [checked]="isOptionSelected(option)"
+              (change)="onMultiOptionChange(option, $event)"
+            />
+            <span class="ai-questionnaire__multi-label">{{ option }}</span>
+          </label>
+        }
+      } @else {
+        @for (option of question.options; track option) {
+          <button
+            class="ai-questionnaire__option"
+            type="button"
+            [class.ai-questionnaire__option--selected]="isOptionSelected(option)"
+            (click)="onSingleOptionSelect(option)"
+          >
+            {{ option }}
+          </button>
+        }
+      }
+    </div>
+
+    @if (allowInput()) {
+      <div class="ai-questionnaire__input-wrap">
+        <label class="ai-questionnaire__input-label" [attr.for]="inputId">Additional input</label>
+        <input
+          [id]="inputId"
+          class="ai-questionnaire__input"
+          type="text"
+          [value]="freeText()"
+          (input)="onInputChange($event)"
+        />
+      </div>
+    }
+
+    @if (showNextButton()) {
+      <div class="ai-questionnaire__actions">
+        <button class="ai-questionnaire__next" type="button" (click)="submitCurrentAnswer()">
+          Next
+        </button>
+      </div>
+    }
+  }
+</section>

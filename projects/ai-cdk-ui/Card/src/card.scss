@@ -1,0 +1,70 @@
+$ai-card-bg: var(--ai-card-bg, #ffffff);
+$ai-card-border: var(--ai-card-border, 1px solid #e5e7eb);
+$ai-card-border-radius: var(--ai-card-border-radius, 12px);
+$ai-card-padding: var(--ai-card-padding, 1.25rem);
+$ai-card-shadow-sm: var(--ai-card-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.08));
+$ai-card-shadow-md: var(--ai-card-shadow-md, 0 4px 12px rgba(0, 0, 0, 0.1));
+$ai-card-shadow-lg: var(--ai-card-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
+$ai-card-hover-shadow: var(--ai-card-hover-shadow, 0 6px 16px rgba(0, 0, 0, 0.14));
+$ai-card-color: var(--ai-card-color, #111827);
+
+:host {
+  display: block;
+}
+
+.ai-card {
+  border: $ai-card-border;
+  border-radius: $ai-card-border-radius;
+  background: $ai-card-bg;
+  color: $ai-card-color;
+  padding: $ai-card-padding;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.ai-card--none {
+  box-shadow: none;
+}
+
+.ai-card--sm {
+  box-shadow: $ai-card-shadow-sm;
+}
+
+.ai-card--md {
+  box-shadow: $ai-card-shadow-md;
+}
+
+.ai-card--lg {
+  box-shadow: $ai-card-shadow-lg;
+}
+
+.ai-card--clickable {
+  cursor: pointer;
+}
+
+.ai-card--clickable:hover {
+  box-shadow: $ai-card-hover-shadow;
+}
+
+.ai-card--clickable:active {
+  transform: translateY(1px);
+}
+
+.ai-card--clickable:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+.ai-card__header,
+.ai-card__footer {
+  margin-bottom: 0.75rem;
+}
+
+.ai-card__footer {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+.ai-card__header:empty,
+.ai-card__footer:empty {
+  display: none;
+}

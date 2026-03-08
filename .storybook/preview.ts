@@ -10,7 +10,7 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['UI', 'Chat'],
+        order: ['Welcome', 'UI', 'Chat'],
       },
     },
   },

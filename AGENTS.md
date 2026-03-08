@@ -1,4 +1,3 @@
-
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
 ## TypeScript Best Practices
@@ -61,7 +60,47 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 ## Storybook Requirements
 
 - Every component MUST have Storybook stories.
-- Every component stories file MUST include a dedicated SCSS tokens story/section that exposes all supported CSS custom properties (design tokens) with interactive controls and default values.
-- Every component MUST show all supported features through stories (inputs, outputs/events, states, variants, and interactive behavior).
-- Keep the main/default story focused on functional API only (inputs/outputs/states/variants); put style token controls in a separate dedicated style/tokens story.
-- For inputs with finite options, use dropdown/select controls instead of free-text controls.
+- Every component stories file MUST be a single-page Storybook experience with one exported `Overview` story.
+- Storybook Controls panel MUST be disabled for component stories. Do not rely on Storybook controls for API or token editing.
+- Every component single-page story MUST include:
+  - Intro/purpose section
+  - Functional API showcase (inputs/outputs/states/variants/interactive behavior)
+  - Technical reference table (public inputs/outputs with accepted values and defaults)
+  - Usage snippets section
+  - SCSS tokens section that exposes all supported CSS custom properties with default values and live in-page inputs
+- Style token editing MUST be implemented inside the story page using Angular bindings/signals (not Storybook controls).
+- For components with outputs/events, include an in-page event log section showing emitted payloads.
+
+## Documentation Requirements
+
+- Always document public methods with clear intent, arguments, and return behavior.
+- Always document component/directive/service inputs with purpose, accepted values, and defaults.
+- Always document outputs/events with emitted payload shape and when they are triggered.
+
+### JSDoc Template Snippet
+
+```ts
+/**
+ * Short summary of what this method does.
+ *
+ * @param argName Explain what this argument controls.
+ * @returns Explain what is returned (or side effects if void).
+ */
+methodName(argName: ArgType): ReturnType {
+  // implementation
+}
+
+/**
+ * Input: Explain purpose, accepted values, and default.
+ * Accepted values: 'sm' | 'md' | 'lg'
+ * Default: 'md'
+ */
+readonly size = input<'sm' | 'md' | 'lg'>('md');
+
+/**
+ * Output: Fired when the user confirms the action.
+ * Payload: void
+ * Trigger: Click on the confirm button.
+ */
+readonly confirmed = output<void>();
+```

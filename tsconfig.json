@@ -20,6 +20,15 @@
       "@ai-cdk/ui/Questionnaire": [
         "./projects/ai-cdk-ui/Questionnaire/public-api.ts"
       ],
+      "@ai-cdk/ui/HumanFeedback": [
+        "./projects/ai-cdk-ui/HumanFeedback/public-api.ts"
+      ],
+      "@ai-cdk/ui/Renderer": [
+        "./projects/ai-cdk-ui/Renderer/public-api.ts"
+      ],
+      "@ai-cdk/ui/ChatTextInput": [
+        "./projects/ai-cdk-ui/ChatTextInput/public-api.ts"
+      ],
       "@ai-cdk/chat": [
         "./projects/ai-cdk-chat/src/public-api.ts"
       ],

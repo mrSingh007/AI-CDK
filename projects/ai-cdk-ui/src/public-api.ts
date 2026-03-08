@@ -4,4 +4,7 @@
 //   @ai-cdk/ui/Card
 //   @ai-cdk/ui/Spinner
 //   @ai-cdk/ui/Questionnaire
+//   @ai-cdk/ui/HumanFeedback
+//   @ai-cdk/ui/Renderer
+//   @ai-cdk/ui/ChatTextInput
 export {};

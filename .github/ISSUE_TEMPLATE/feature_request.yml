@@ -1,0 +1,54 @@
+name: Feature request
+description: Propose a new feature or enhancement
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. Please describe the problem and proposed solution.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What user or developer problem are you trying to solve?
+      placeholder: Today, it is hard to ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the desired behavior and API/UX expectations.
+      placeholder: We should add ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What alternatives did you evaluate?
+      placeholder: Another option is ...
+    validations:
+      required: false
+
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility considerations
+      description: Expected keyboard, focus, screen reader, ARIA, and contrast behavior.
+      placeholder: This feature should ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and impact
+      description: Which package/component is affected? Any breaking changes?
+      placeholder: Affects @ai-cdk/ui/Card, no breaking changes.
+    validations:
+      required: true

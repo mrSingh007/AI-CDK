@@ -7,11 +7,14 @@ $ai-questionnaire-option-bg: var(--ai-questionnaire-option-bg, #f9fafb);
 $ai-questionnaire-option-border: var(--ai-questionnaire-option-border, 1px solid #e5e7eb);
 $ai-questionnaire-option-hover-bg: var(--ai-questionnaire-option-hover-bg, #eff6ff);
 $ai-questionnaire-option-selected-bg: var(--ai-questionnaire-option-selected-bg, #3b82f6);
-$ai-questionnaire-option-selected-color: var(--ai-questionnaire-option-selected-color, #ffffff);
+$ai-questionnaire-option-selected-color: var(--ai-questionnaire-option-selected-color, #060606);
 $ai-questionnaire-input-border: var(--ai-questionnaire-input-border, 1px solid #d1d5db);
 $ai-questionnaire-input-bg: var(--ai-questionnaire-input-bg, #ffffff);
 $ai-questionnaire-input-color: var(--ai-questionnaire-input-color, #111827);
 $ai-questionnaire-gap: var(--ai-questionnaire-gap, 0.5rem);
+$ai-questionnaire-next-bg: var(--ai-questionnaire-next-bg, #2563eb);
+$ai-questionnaire-next-color: var(--ai-questionnaire-next-color, #ffffff);
+$ai-questionnaire-next-padding: var(--ai-questionnaire-next-padding, 0.5rem 1rem);
 
 :host {
   display: block;
@@ -102,9 +105,9 @@ $ai-questionnaire-gap: var(--ai-questionnaire-gap, 0.5rem);
 .ai-questionnaire__next {
   border: none;
   border-radius: 0.5rem;
-  background: #2563eb;
-  color: #ffffff;
-  padding: 0.5rem 1rem;
+  background: $ai-questionnaire-next-bg;
+  color: $ai-questionnaire-next-color;
+  padding: $ai-questionnaire-next-padding;
   cursor: pointer;
 }
 

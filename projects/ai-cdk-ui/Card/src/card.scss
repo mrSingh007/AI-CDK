@@ -2,9 +2,7 @@ $ai-card-bg: var(--ai-card-bg, #ffffff);
 $ai-card-border: var(--ai-card-border, 1px solid #e5e7eb);
 $ai-card-border-radius: var(--ai-card-border-radius, 12px);
 $ai-card-padding: var(--ai-card-padding, 1.25rem);
-$ai-card-shadow-sm: var(--ai-card-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.08));
-$ai-card-shadow-md: var(--ai-card-shadow-md, 0 4px 12px rgba(0, 0, 0, 0.1));
-$ai-card-shadow-lg: var(--ai-card-shadow-lg, 0 8px 24px rgba(0, 0, 0, 0.12));
+$ai-card-shadow: var(--ai-card-shadow, 0 1px 3px rgba(0, 0, 0, 0.08));
 $ai-card-hover-shadow: var(--ai-card-hover-shadow, 0 6px 16px rgba(0, 0, 0, 0.14));
 $ai-card-color: var(--ai-card-color, #111827);
 
@@ -18,23 +16,8 @@ $ai-card-color: var(--ai-card-color, #111827);
   background: $ai-card-bg;
   color: $ai-card-color;
   padding: $ai-card-padding;
+  box-shadow: $ai-card-shadow;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.ai-card--none {
-  box-shadow: none;
-}
-
-.ai-card--sm {
-  box-shadow: $ai-card-shadow-sm;
-}
-
-.ai-card--md {
-  box-shadow: $ai-card-shadow-md;
-}
-
-.ai-card--lg {
-  box-shadow: $ai-card-shadow-lg;
 }
 
 .ai-card--clickable {

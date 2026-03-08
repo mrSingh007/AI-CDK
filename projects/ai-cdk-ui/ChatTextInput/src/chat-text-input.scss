@@ -1,0 +1,189 @@
+$ai-chat-text-input-bg: var(--ai-chat-text-input-bg, #ffffff);
+$ai-chat-text-input-border: var(--ai-chat-text-input-border, 1px solid #d1d5db);
+$ai-chat-text-input-radius: var(--ai-chat-text-input-radius, 20px);
+$ai-chat-text-input-padding: var(--ai-chat-text-input-padding, 0.95rem 1rem);
+$ai-chat-text-input-gap: var(--ai-chat-text-input-gap, 0.75rem);
+
+$ai-chat-text-input-textarea-bg: var(--ai-chat-text-input-textarea-bg, transparent);
+$ai-chat-text-input-textarea-border: var(--ai-chat-text-input-textarea-border, none);
+$ai-chat-text-input-textarea-radius: var(--ai-chat-text-input-textarea-radius, 12px);
+$ai-chat-text-input-textarea-color: var(--ai-chat-text-input-textarea-color, #111827);
+$ai-chat-text-input-textarea-placeholder: var(--ai-chat-text-input-textarea-placeholder, #6b7280);
+$ai-chat-text-input-textarea-padding: var(--ai-chat-text-input-textarea-padding, 0);
+$ai-chat-text-input-textarea-min-height: var(--ai-chat-text-input-textarea-min-height, 5.25rem);
+$ai-chat-text-input-textarea-font-size: var(--ai-chat-text-input-textarea-font-size, 1rem);
+
+$ai-chat-text-input-controls-gap: var(--ai-chat-text-input-controls-gap, 0.65rem);
+$ai-chat-text-input-upload-bg: var(--ai-chat-text-input-upload-bg, #ffffff);
+$ai-chat-text-input-upload-border: var(--ai-chat-text-input-upload-border, 1px solid #d1d5db);
+$ai-chat-text-input-upload-color: var(--ai-chat-text-input-upload-color, #111827);
+$ai-chat-text-input-upload-hover-bg: var(--ai-chat-text-input-upload-hover-bg, #f9fafb);
+$ai-chat-text-input-upload-size: var(--ai-chat-text-input-upload-size, 2.25rem);
+
+$ai-chat-text-input-send-bg: var(--ai-chat-text-input-send-bg, #f3f4f6);
+$ai-chat-text-input-send-color: var(--ai-chat-text-input-send-color, #62757e);
+$ai-chat-text-input-send-active-bg: var(--ai-chat-text-input-send-active-bg, #c1c4ffff);
+$ai-chat-text-input-send-active-color: var(
+  --ai-chat-text-input-send-active-color,
+  $ai-chat-text-input-send-color
+);
+$ai-chat-text-input-send-disabled-bg: var(--ai-chat-text-input-send-disabled-bg, #e5e7eb);
+$ai-chat-text-input-send-disabled-color: var(--ai-chat-text-input-send-disabled-color, #9ca3af);
+$ai-chat-text-input-send-size: var(--ai-chat-text-input-send-size, 3rem);
+$ai-chat-text-input-send-icon-size: var(--ai-chat-text-input-send-icon-size, 1.5rem);
+$ai-chat-text-input-send-icon-url: var(
+  --ai-chat-text-input-send-icon-url,
+  url('./icons/ai-chat-text-input-send.svg')
+);
+
+$ai-chat-text-input-files-color: var(--ai-chat-text-input-files-color, #374151);
+$ai-chat-text-input-files-size: var(--ai-chat-text-input-files-size, 0.8rem);
+$ai-chat-text-input-focus-color: var(--ai-chat-text-input-focus-color, #60a5fa);
+$ai-chat-text-input-focus-shadow: var(
+  --ai-chat-text-input-focus-shadow,
+  0 0 0 3px rgba(96, 165, 250, 0.35)
+);
+
+:host {
+  display: block;
+}
+
+.ai-chat-text-input {
+  display: grid;
+  gap: $ai-chat-text-input-gap;
+  border: $ai-chat-text-input-border;
+  border-radius: $ai-chat-text-input-radius;
+  background: $ai-chat-text-input-bg;
+  padding: $ai-chat-text-input-padding;
+}
+
+.ai-chat-text-input__textarea {
+  min-height: $ai-chat-text-input-textarea-min-height;
+  width: 100%;
+  resize: none;
+  overflow-y: hidden;
+  border: $ai-chat-text-input-textarea-border;
+  border-radius: $ai-chat-text-input-textarea-radius;
+  background: $ai-chat-text-input-textarea-bg;
+  color: $ai-chat-text-input-textarea-color;
+  font-size: $ai-chat-text-input-textarea-font-size;
+  line-height: 1.35;
+  padding: $ai-chat-text-input-textarea-padding;
+}
+
+.ai-chat-text-input__textarea::placeholder {
+  color: $ai-chat-text-input-textarea-placeholder;
+}
+
+.ai-chat-text-input__controls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: $ai-chat-text-input-controls-gap;
+}
+
+.ai-chat-text-input__controls-left {
+  display: flex;
+  align-items: center;
+  gap: $ai-chat-text-input-controls-gap;
+  min-height: $ai-chat-text-input-upload-size;
+}
+
+.ai-chat-text-input__upload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $ai-chat-text-input-upload-size;
+  height: $ai-chat-text-input-upload-size;
+  border: $ai-chat-text-input-upload-border;
+  border-radius: 999px;
+  background: $ai-chat-text-input-upload-bg;
+  color: $ai-chat-text-input-upload-color;
+  cursor: pointer;
+}
+
+.ai-chat-text-input__upload:hover {
+  background: $ai-chat-text-input-upload-hover-bg;
+}
+
+.ai-chat-text-input__upload-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.ai-chat-text-input__send {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $ai-chat-text-input-send-size;
+  height: $ai-chat-text-input-send-size;
+  border: none;
+  border-radius: 999px;
+  background: $ai-chat-text-input-send-bg;
+  color: $ai-chat-text-input-send-color;
+  --_ai-chat-text-input-send-icon-color: #{$ai-chat-text-input-send-color};
+  cursor: pointer;
+}
+
+.ai-chat-text-input__send--active {
+  background: $ai-chat-text-input-send-active-bg;
+  --_ai-chat-text-input-send-icon-color: #{$ai-chat-text-input-send-active-color};
+}
+
+.ai-chat-text-input__send-icon {
+  display: inline-block;
+  width: $ai-chat-text-input-send-icon-size;
+  height: $ai-chat-text-input-send-icon-size;
+  background: var(--_ai-chat-text-input-send-icon-color);
+  -webkit-mask-image: $ai-chat-text-input-send-icon-url;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  mask-image: $ai-chat-text-input-send-icon-url;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+}
+
+.ai-chat-text-input__send:disabled {
+  background: $ai-chat-text-input-send-disabled-bg;
+  --_ai-chat-text-input-send-icon-color: #{$ai-chat-text-input-send-disabled-color};
+  cursor: not-allowed;
+}
+
+.ai-chat-text-input__files {
+  margin: 0;
+  color: $ai-chat-text-input-files-color;
+  font-size: $ai-chat-text-input-files-size;
+}
+
+.ai-chat-text-input__textarea:focus-visible,
+.ai-chat-text-input__upload:focus-visible,
+.ai-chat-text-input__send:focus-visible {
+  outline: 2px solid $ai-chat-text-input-focus-color;
+  outline-offset: 2px;
+  box-shadow: $ai-chat-text-input-focus-shadow;
+}
+
+.ai-chat-text-input__file-input,
+.ai-chat-text-input__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .ai-chat-text-input__textarea {
+    font-size: 1.25rem;
+  }
+
+  .ai-chat-text-input__controls {
+    align-items: center;
+  }
+}

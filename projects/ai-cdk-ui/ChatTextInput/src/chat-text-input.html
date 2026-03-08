@@ -1,0 +1,68 @@
+<section class="ai-chat-text-input" role="group" [attr.aria-label]="placeholder()">
+  <label class="ai-chat-text-input__sr-only" [attr.for]="textareaId">Message</label>
+
+  <textarea
+    #textareaRef
+    [id]="textareaId"
+    class="ai-chat-text-input__textarea"
+    [placeholder]="placeholder()"
+    [value]="draftText()"
+    [disabled]="disabled()"
+    (input)="onTextInput($event)"
+    (keydown)="onTextareaKeydown($event)"
+  ></textarea>
+
+  <div class="ai-chat-text-input__controls">
+    <div class="ai-chat-text-input__controls-left">
+      @if (showUploadButton()) {
+        <button
+          class="ai-chat-text-input__upload"
+          type="button"
+          [disabled]="disabled()"
+          [attr.aria-label]="uploadAriaLabel()"
+          (click)="onUploadClick()"
+        >
+          <svg
+            class="ai-chat-text-input__upload-icon"
+            aria-hidden="true"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="currentColor"
+              fill-rule="evenodd"
+              d="M6.95 5A4.05 4.05 0 0 1 11.395.97c2.108.203 3.655 2.087 3.655 4.2V15.5a2.55 2.55 0 0 1-2.815 2.54c-1.33-.133-2.285-1.348-2.285-2.68V6.75c0-.438.362-.8.8-.8s.8.362.8.8v8.75c0 .522.428.95.95.95s.95-.428.95-.95V5a2.45 2.45 0 0 0-2.705-2.44c-1.27.127-2.195 1.292-2.195 2.58V17.5a3.943 3.943 0 0 0 4.335 3.93c2.052-.197 3.565-2.033 3.565-4.1V6.75c0-.438.362-.8.8-.8s.8.362.8.8V17.5a5.555 5.555 0 0 1-6.095 5.53c-2.888-.273-5.005-2.867-5.005-5.76z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      }
+
+      @if (selectedFileCount() > 0) {
+        <p class="ai-chat-text-input__files" aria-live="polite">{{ selectedFileSummary() }}</p>
+      }
+    </div>
+
+    <button
+      class="ai-chat-text-input__send"
+      type="button"
+      [class.ai-chat-text-input__send--active]="canSubmit()"
+      [disabled]="!canSubmit()"
+      [attr.aria-label]="sendAriaLabel()"
+      (click)="onSendClick()"
+    >
+      <span class="ai-chat-text-input__send-icon" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <input
+    #fileInputRef
+    class="ai-chat-text-input__file-input"
+    type="file"
+    tabindex="-1"
+    aria-hidden="true"
+    [attr.accept]="fileInputAccept()"
+    [multiple]="allowMultipleFiles()"
+    (change)="onFileSelectionChange($event)"
+  />
+</section>

@@ -1,0 +1,86 @@
+import { Description, Primary, Source, Stories, Subtitle, Title } from '@storybook/addon-docs/blocks';
+
+<Title />
+<Subtitle>Renderer Usage</Subtitle>
+<Description>
+  `AiPayloadRendererComponent` resolves protocol payloads to registered components and bridges runtime
+  communication with consumer handlers.
+</Description>
+
+## Consumer Setup
+
+### Registry
+
+<Source
+  language="ts"
+  code={`const registry: readonly AiPayloadComponentRegistration[] = [
+  {
+    key: 'card',
+    component: AiCardComponent,
+    events: { cardClick: 'onCardClick' },
+    contentSlots: ['header', '', 'footer']
+  },
+  {
+    key: 'questionnaire',
+    component: AiQuestionnaireComponent,
+    events: { answerSubmit: 'onAnswerSubmit', completed: 'onQuestionnaireCompleted' }
+  },
+  {
+    key: 'callbackInput',
+    component: AiLoremCallbackComponent,
+    events: { onAction: 'onCallbackAction' }
+  },
+  {
+    key: 'nativeClick',
+    component: AiNativeClickSurfaceComponent,
+    events: { click: 'onNativeClick' }
+  },
+  {
+    key: 'modelBridge',
+    component: AiModelBridgeDemoComponent,
+    events: { ngModelChange: 'onModelChange' }
+  }
+];`}
+/>
+
+### Event Handlers
+
+<Source
+  language="ts"
+  code={`const eventHandlers = {
+  onCardClick: (event: unknown) => console.log('cardClick', event),
+  onAnswerSubmit: (payload: unknown) => console.log('answerSubmit', payload),
+  onQuestionnaireCompleted: (payload: unknown) => console.log('completed', payload),
+  onCallbackAction: (payload: unknown) => console.log('callback-input', payload),
+  onNativeClick: (event: unknown) => console.log('native-click', event),
+  onModelChange: (value: unknown) => console.log('ngModelChange', value)
+};`}
+/>
+
+### Host Usage
+
+<Source
+  language="html"
+  code={`<ai-payload-renderer
+  [registry]="registry"
+  [renderRequest]="renderRequest"
+  [eventHandlers]="eventHandlers"
+  [ariaLiveMode]="'polite'"
+/>`}
+/>
+
+## Supported Cases
+
+1. Output and subscribable output mapping: set `registry.events` to output property names.
+2. Callback input mapping: set `registry.events` to callback-style input names (example: `onAction`).
+3. Native click mapping: use reserved event key `click` in `registry.events`.
+4. CVA bridging: use `props.ngModel` and `events.ngModelChange`.
+5. Content projection:
+   `contentSlots` omitted: `renderRequest.content` maps to default `<ng-content>`.
+   `contentSlots` present: use ordered slot names, with `''` for default slot.
+6. Unknown component key: renderer skips render and warns in console.
+
+## Live Stories
+
+<Primary />
+<Stories includePrimary={false} />

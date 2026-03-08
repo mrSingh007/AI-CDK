@@ -1,0 +1,35 @@
+<section
+  class="ai-human-feedback"
+  role="group"
+  [attr.aria-labelledby]="descriptionId"
+>
+  <p
+    [id]="descriptionId"
+    class="ai-human-feedback__text"
+  >
+    {{ text() }}
+  </p>
+
+  <div
+    class="ai-human-feedback__actions"
+    role="group"
+    aria-label="Approval actions"
+    [attr.aria-describedby]="descriptionId"
+  >
+    <button
+      class="ai-human-feedback__button ai-human-feedback__button--reject"
+      type="button"
+      (click)="onRejectClick()"
+    >
+      {{ cancelButtonText() }}
+    </button>
+
+    <button
+      class="ai-human-feedback__button ai-human-feedback__button--approve"
+      type="button"
+      (click)="onConfirmClick()"
+    >
+      {{ approveButtonText() }}
+    </button>
+  </div>
+</section>

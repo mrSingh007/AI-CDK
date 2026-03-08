@@ -6,8 +6,6 @@ import {
   output,
 } from '@angular/core';
 
-export type AiCardElevation = 'none' | 'sm' | 'md' | 'lg';
-
 @Component({
   selector: 'ai-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,11 +16,26 @@ export type AiCardElevation = 'none' | 'sm' | 'md' | 'lg';
   styleUrl: './card.scss',
 })
 export class AiCardComponent {
-  readonly elevation = input<AiCardElevation>('md');
+  /**
+   * Input: Controls whether the card behaves as an interactive surface.
+   * Accepted values: boolean
+   * Default: false
+   */
   readonly clickable = input(false, { transform: booleanAttribute });
 
+  /**
+   * Output: Fired when card activation occurs via click or keyboard.
+   * Payload: MouseEvent
+   * Trigger: Card click, Enter key, or Space key while clickable is true.
+   */
   readonly cardClick = output<MouseEvent>();
 
+  /**
+   * Handles pointer activation for clickable cards.
+   *
+   * @param event Native click event from the card container.
+   * @returns Void. Emits `cardClick` when clickable is enabled.
+   */
   onCardClick(event: MouseEvent): void {
     if (!this.clickable()) {
       return;
@@ -31,6 +44,12 @@ export class AiCardComponent {
     this.cardClick.emit(event);
   }
 
+  /**
+   * Handles keyboard activation semantics for clickable cards.
+   *
+   * @param event Keyboard event from the card container.
+   * @returns Void. Emits `cardClick` for Enter and Space keys when clickable is enabled.
+   */
   onCardKeydown(event: KeyboardEvent): void {
     if (!this.clickable()) {
       return;

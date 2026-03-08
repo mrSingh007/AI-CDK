@@ -1,8 +1,6 @@
 $ai-spinner-color: var(--ai-spinner-color, #3b82f6);
 $ai-spinner-track-color: var(--ai-spinner-track-color, #e5e7eb);
-$ai-spinner-size-xs: var(--ai-spinner-size-xs, 12px);
-$ai-spinner-size-sm: var(--ai-spinner-size-sm, 18px);
-$ai-spinner-size-md: var(--ai-spinner-size-md, 24px);
+$ai-spinner-size: var(--ai-spinner-size, 18px);
 $ai-spinner-stroke-width: var(--ai-spinner-stroke-width, 2.5px);
 $ai-spinner-duration: var(--ai-spinner-duration, 0.75s);
 
@@ -12,25 +10,10 @@ $ai-spinner-duration: var(--ai-spinner-duration, 0.75s);
 }
 
 .ai-spinner {
-  width: $ai-spinner-size-sm;
-  height: $ai-spinner-size-sm;
+  width: $ai-spinner-size;
+  height: $ai-spinner-size;
   animation: ai-spinner-rotate $ai-spinner-duration linear infinite;
   color: var(--ai-spinner-inline-color, $ai-spinner-color);
-}
-
-.ai-spinner--xs {
-  width: $ai-spinner-size-xs;
-  height: $ai-spinner-size-xs;
-}
-
-.ai-spinner--sm {
-  width: $ai-spinner-size-sm;
-  height: $ai-spinner-size-sm;
-}
-
-.ai-spinner--md {
-  width: $ai-spinner-size-md;
-  height: $ai-spinner-size-md;
 }
 
 .ai-spinner__track,

@@ -1,0 +1,67 @@
+name: Bug report
+description: Report a reproducible problem in ai-cdk
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please provide enough detail for us to reproduce and debug quickly.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: A clear and concise description of the bug.
+      placeholder: Describe the current behavior.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include a minimal, deterministic reproduction.
+      placeholder: |
+        1. Go to ...
+        2. Configure ...
+        3. Click ...
+        4. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should happen instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility impact
+      description: Any AXE/WCAG impact, keyboard/focus issues, screen reader behavior, or contrast concerns.
+      placeholder: No known impact / describe impact.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include relevant versions and setup.
+      placeholder: |
+        - Package(s):
+        - Angular version:
+        - Browser/OS:
+        - Storybook version:
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Logs, screenshots, links, or related issues.

@@ -1,0 +1,127 @@
+$ai-human-feedback-bg: var(--ai-human-feedback-bg, #ffffff);
+$ai-human-feedback-border: var(--ai-human-feedback-border, 1px solid #d1d5db);
+$ai-human-feedback-radius: var(--ai-human-feedback-radius, 12px);
+$ai-human-feedback-padding: var(--ai-human-feedback-padding, 1rem);
+$ai-human-feedback-gap: var(--ai-human-feedback-gap, 0.875rem);
+$ai-human-feedback-text-color: var(--ai-human-feedback-text-color, #111827);
+$ai-human-feedback-text-size: var(--ai-human-feedback-text-size, 1rem);
+$ai-human-feedback-actions-gap: var(--ai-human-feedback-actions-gap, 0.75rem);
+
+$ai-human-feedback-button-padding: var(--ai-human-feedback-button-padding, 0.625rem 0.875rem);
+$ai-human-feedback-button-radius: var(--ai-human-feedback-button-radius, 10px);
+$ai-human-feedback-button-font-size: var(--ai-human-feedback-button-font-size, 0.95rem);
+$ai-human-feedback-button-font-weight: var(--ai-human-feedback-button-font-weight, 600);
+$ai-human-feedback-button-flex: var(--ai-human-feedback-button-flex, 1 1 10rem);
+$ai-human-feedback-button-border: var(
+  --ai-human-feedback-button-border,
+  1px solid transparent
+);
+$ai-human-feedback-cancel-height: var(--ai-human-feedback-cancel-height, 2.625rem);
+$ai-human-feedback-approve-height: var(--ai-human-feedback-approve-height, 2.625rem);
+$ai-human-feedback-focus-ring-color: var(--ai-human-feedback-focus-ring-color, #1d4ed8);
+$ai-human-feedback-focus-ring-shadow: var(
+  --ai-human-feedback-focus-ring-shadow,
+  0 0 0 3px rgba(29, 78, 216, 0.3)
+);
+
+$ai-human-feedback-cancel-bg: var(--ai-human-feedback-cancel-bg, #ffffff);
+$ai-human-feedback-cancel-color: var(--ai-human-feedback-cancel-color, #1f2937);
+$ai-human-feedback-cancel-button-border: var(
+  --ai-human-feedback-cancel-button-border,
+  var(--ai-human-feedback-button-border, 1px solid #6b7280)
+);
+$ai-human-feedback-cancel-hover-bg: var(--ai-human-feedback-cancel-hover-bg, #f9fafb);
+$ai-human-feedback-cancel-active-bg: var(--ai-human-feedback-cancel-active-bg, #f3f4f6);
+
+$ai-human-feedback-approve-bg: var(--ai-human-feedback-approve-bg, #1d4ed8);
+$ai-human-feedback-approve-color: var(--ai-human-feedback-approve-color, #ffffff);
+$ai-human-feedback-approve-button-border: var(
+  --ai-human-feedback-approve-button-border,
+  var(--ai-human-feedback-button-border, 1px solid #1e40af)
+);
+$ai-human-feedback-approve-hover-bg: var(--ai-human-feedback-approve-hover-bg, #1e40af);
+$ai-human-feedback-approve-active-bg: var(--ai-human-feedback-approve-active-bg, #1e3a8a);
+
+:host {
+  display: block;
+  max-inline-size: var(--ai-human-feedback-max-width, 40rem);
+}
+
+.ai-human-feedback {
+  display: grid;
+  gap: $ai-human-feedback-gap;
+  padding: $ai-human-feedback-padding;
+  color: $ai-human-feedback-text-color;
+  background: $ai-human-feedback-bg;
+  border: $ai-human-feedback-border;
+  border-radius: $ai-human-feedback-radius;
+}
+
+.ai-human-feedback__text {
+  margin: 0;
+  font-size: $ai-human-feedback-text-size;
+  line-height: 1.5;
+}
+
+.ai-human-feedback__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $ai-human-feedback-actions-gap;
+}
+
+.ai-human-feedback__button {
+  flex: $ai-human-feedback-button-flex;
+  padding: $ai-human-feedback-button-padding;
+  border: $ai-human-feedback-button-border;
+  border-radius: $ai-human-feedback-button-radius;
+  font-size: $ai-human-feedback-button-font-size;
+  font-weight: $ai-human-feedback-button-font-weight;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.ai-human-feedback__button:focus-visible {
+  outline: 2px solid $ai-human-feedback-focus-ring-color;
+  outline-offset: 2px;
+  box-shadow: $ai-human-feedback-focus-ring-shadow;
+}
+
+.ai-human-feedback__button--reject {
+  height: $ai-human-feedback-cancel-height;
+  color: $ai-human-feedback-cancel-color;
+  background: $ai-human-feedback-cancel-bg;
+  border: $ai-human-feedback-cancel-button-border;
+}
+
+.ai-human-feedback__button--reject:hover {
+  background: $ai-human-feedback-cancel-hover-bg;
+}
+
+.ai-human-feedback__button--reject:active {
+  background: $ai-human-feedback-cancel-active-bg;
+}
+
+.ai-human-feedback__button--approve {
+  height: $ai-human-feedback-approve-height;
+  color: $ai-human-feedback-approve-color;
+  background: $ai-human-feedback-approve-bg;
+  border: $ai-human-feedback-approve-button-border;
+}
+
+.ai-human-feedback__button--approve:hover {
+  background: $ai-human-feedback-approve-hover-bg;
+}
+
+.ai-human-feedback__button--approve:active {
+  background: $ai-human-feedback-approve-active-bg;
+}
+
+@media (max-width: 480px) {
+  .ai-human-feedback__button {
+    flex-basis: 100%;
+  }
+}

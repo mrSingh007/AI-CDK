@@ -4,6 +4,7 @@
     "types": ["node"]
   },
   "include": [
+    "./mdx.d.ts",
     "./preview.ts",
     "../projects/**/*.stories.ts"
   ]

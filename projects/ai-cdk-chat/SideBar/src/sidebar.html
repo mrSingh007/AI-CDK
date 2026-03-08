@@ -19,7 +19,7 @@
     </button>
   </header>
 
-  <div #messagesContainer class="ai-sidebar__messages" role="log" aria-live="polite" aria-relevant="additions text">
+  <div #messagesContainer class="ai-sidebar__messages" role="log" aria-live="polite" aria-relevant="additions">
     @for (message of messages(); track message.id) {
       <div
         class="ai-sidebar__bubble"

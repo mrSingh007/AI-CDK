@@ -30,6 +30,13 @@
           "options": {
             "tsConfig": "projects/ai-cdk-ui/tsconfig.spec.json"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/ai-cdk-ui/**/*.ts", "projects/ai-cdk-ui/**/*.html"],
+            "eslintConfig": "projects/ai-cdk-ui/eslint.config.js"
+          }
         }
       }
     },
@@ -56,6 +63,13 @@
           "options": {
             "tsConfig": "projects/ai-cdk-chat/tsconfig.spec.json"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["projects/ai-cdk-chat/**/*.ts", "projects/ai-cdk-chat/**/*.html"],
+            "eslintConfig": "projects/ai-cdk-chat/eslint.config.js"
+          }
         }
       }
     },
@@ -71,9 +85,7 @@
             "browser": "projects/storybook-host/src/main.ts",
             "index": "projects/storybook-host/src/index.html",
             "tsConfig": "projects/storybook-host/tsconfig.app.json",
-            "styles": [
-              "projects/storybook-host/src/styles.css"
-            ],
+            "styles": ["projects/storybook-host/src/styles.css"],
             "assets": []
           },
           "configurations": {
@@ -102,6 +114,16 @@
             "browserTarget": "storybook-host:build",
             "outputDir": "storybook-static",
             "compodoc": false
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/storybook-host/**/*.ts",
+              "projects/storybook-host/**/*.html"
+            ],
+            "eslintConfig": "projects/storybook-host/eslint.config.js"
           }
         }
       }

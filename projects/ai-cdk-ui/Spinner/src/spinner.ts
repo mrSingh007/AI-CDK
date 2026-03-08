@@ -1,6 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-
-export type AiSpinnerSize = 'xs' | 'sm' | 'md';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'ai-spinner',
@@ -13,5 +11,4 @@ export type AiSpinnerSize = 'xs' | 'sm' | 'md';
   styleUrl: './spinner.scss',
 })
 export class AiSpinnerComponent {
-  readonly size = input<AiSpinnerSize>('sm');
 }

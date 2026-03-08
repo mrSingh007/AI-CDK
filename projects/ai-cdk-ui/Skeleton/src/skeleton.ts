@@ -16,5 +16,10 @@ import {
   styleUrl: './skeleton.scss',
 })
 export class AiSkeletonComponent {
+  /**
+   * Input: Enables or disables shimmer animation.
+   * Accepted values: boolean
+   * Default: true
+   */
   readonly animate = input(true, { transform: booleanAttribute });
 }

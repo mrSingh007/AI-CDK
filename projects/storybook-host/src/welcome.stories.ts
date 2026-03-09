@@ -9,8 +9,7 @@ const meta: Meta = {
     },
     docs: {
       description: {
-        component:
-          'Introduction to the AI CDK component libraries and their main usage focus.',
+        component: 'Introduction to the AI CDK component libraries and their main usage focus.',
       },
     },
   },
@@ -37,6 +36,9 @@ const meta: Meta = {
         </h1>
         <p style="margin: 0 0 1rem;">
           This library is AI-based and designed for building AI chatbots and agent experiences.
+        </p>
+        <p style="margin: 0 0 1rem;">
+          Use renderer component to render component inside your chatbot. AG-UI or Vercel-AI protocol, only json is required.
         </p>
         <p style="margin: 0 0 1rem;">
           Components can be composed to create conversational interfaces, tool workflows, and assistant UI flows.

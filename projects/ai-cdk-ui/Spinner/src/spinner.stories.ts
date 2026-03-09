@@ -121,26 +121,40 @@ export const Overview: Story = {
       template: `
         <style>
           .ai-spinner-docs {
+            font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
             display: grid;
             gap: 1rem;
-            color: #0f172a;
+            color: #10233f;
+            font-size: 0.95rem;
+            line-height: 1.55;
           }
 
           .ai-spinner-docs__section {
-            border: 1px solid #cbd5e1;
-            border-radius: 14px;
-            padding: 1rem;
-            background: #ffffff;
+            border: 1px solid #d5e2f3;
+            border-radius: 16px;
+            padding: 1.1rem;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
           }
 
           .ai-spinner-docs__title {
             margin: 0 0 0.5rem;
-            font-size: 1.12rem;
+            font-size: 1.24rem;
+            line-height: 1.3;
+            color: #0b1f3a;
+            letter-spacing: 0.01em;
+          }
+
+          .ai-spinner-docs__subtitle {
+            margin: 0 0 0.5rem;
+            font-size: 1.02rem;
+            line-height: 1.4;
+            color: #11365e;
           }
 
           .ai-spinner-docs__lead {
             margin: 0;
-            color: #334155;
+            color: #2a3f5e;
             line-height: 1.5;
           }
 
@@ -156,44 +170,46 @@ export const Overview: Story = {
             place-items: center;
             gap: 0.5rem;
             min-height: 120px;
-            border: 1px dashed #cbd5e1;
-            border-radius: 10px;
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
             padding: 0.75rem;
-            background: #f8fafc;
+            background: #f3f8ff;
           }
 
           .ai-spinner-docs__preview-label {
             margin: 0;
             font-size: 0.85rem;
-            color: #334155;
+            color: #274a74;
           }
 
           .ai-spinner-docs__table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 0.75rem;
+            font-size: 0.88rem;
           }
 
           .ai-spinner-docs__table th,
           .ai-spinner-docs__table td {
-            border: 1px solid #d1d5db;
-            padding: 0.625rem;
+            border: 1px solid #ccdaea;
+            padding: 0.6rem;
             text-align: left;
             vertical-align: top;
-            font-size: 0.9rem;
           }
 
           .ai-spinner-docs__table thead {
-            background: #f8fafc;
+            background: #edf5ff;
+            color: #0f355f;
           }
 
           .ai-spinner-docs__code {
-            margin: 0.65rem 0 0;
-            border-radius: 10px;
-            padding: 0.75rem;
-            background: #0f172a;
-            color: #e2e8f0;
-            font: 500 0.78rem/1.45 'Menlo', 'Monaco', monospace;
+            margin: 0;
+            border-radius: 12px;
+            border: 1px solid #22324b;
+            padding: 0.8rem 0.85rem;
+            background: #0f1a2c;
+            color: #d7e5ff;
+            font: 500 0.79rem/1.5 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
             overflow-x: auto;
           }
 
@@ -226,22 +242,23 @@ export const Overview: Story = {
             gap: 0.5rem;
             font-size: 0.88rem;
             font-weight: 600;
+            color: #143960;
           }
 
           .ai-spinner-docs__token-label code {
             padding: 0.125rem 0.375rem;
             border-radius: 6px;
-            background: #f1f5f9;
+            background: #e8f0fb;
             font-size: 0.75rem;
           }
 
           .ai-spinner-docs__token-input {
             min-height: 2.1rem;
             width: 100%;
-            border: 1px solid #94a3b8;
+            border: 1px solid #8ca8c8;
             border-radius: 8px;
             background: #ffffff;
-            color: #0f172a;
+            color: #0f2746;
             padding: 0.45rem 0.6rem;
           }
 
@@ -250,13 +267,13 @@ export const Overview: Story = {
           }
 
           .ai-spinner-docs__token-input:focus-visible {
-            outline: 2px solid #1d4ed8;
+            outline: 2px solid #0f4ea0;
             outline-offset: 2px;
           }
 
           .ai-spinner-docs__token-default {
             margin: 0;
-            color: #475569;
+            color: #355779;
             font-size: 0.78rem;
           }
 
@@ -264,9 +281,9 @@ export const Overview: Story = {
             min-height: 240px;
             display: grid;
             place-items: center;
-            border: 1px dashed #cbd5e1;
-            border-radius: 10px;
-            background: #f8fafc;
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
+            background: #f3f8ff;
           }
 
           @media (max-width: 920px) {
@@ -279,33 +296,11 @@ export const Overview: Story = {
         <article class="ai-spinner-docs" aria-label="AiSpinnerComponent single-page documentation">
           <section class="ai-spinner-docs__section" aria-labelledby="ai-spinner-intro">
             <h2 id="ai-spinner-intro" class="ai-spinner-docs__title">AiSpinnerComponent</h2>
-            <pre class="ai-spinner-docs__code"><code>import &#123;AiSpinnerComponent&#125; from '@ai-cdk/ui';</code></pre>
             <p class="ai-spinner-docs__lead">
-              AiSpinnerComponent provides a lightweight loading indicator with CSS-token
-              theming support for color, dimensions, and animation timing.
+              AiSpinnerComponent provides a lightweight loading indicator with CSS-token theming support for
+              color, dimensions, and animation timing.
             </p>
-          </section>
-
-          <section class="ai-spinner-docs__section" aria-labelledby="ai-spinner-functional">
-            <h2 id="ai-spinner-functional" class="ai-spinner-docs__title">Functional API showcase</h2>
-            <p class="ai-spinner-docs__lead">Default usage, token-based size override, and inline color override.</p>
-
-            <div class="ai-spinner-docs__preview-grid">
-              <div class="ai-spinner-docs__preview">
-                <ai-spinner></ai-spinner>
-                <p class="ai-spinner-docs__preview-label">default size (18px)</p>
-              </div>
-
-              <div class="ai-spinner-docs__preview" style="--ai-spinner-size: 28px;">
-                <ai-spinner></ai-spinner>
-                <p class="ai-spinner-docs__preview-label">token size override (28px)</p>
-              </div>
-
-              <div class="ai-spinner-docs__preview" style="--ai-spinner-inline-color: #ef4444;">
-                <ai-spinner></ai-spinner>
-                <p class="ai-spinner-docs__preview-label">inline color override</p>
-              </div>
-            </div>
+            <pre class="ai-spinner-docs__code"><code>import &#123; AiSpinnerComponent &#125; from '@ai-cdk/ui/Spinner';</code></pre>
           </section>
 
           <section class="ai-spinner-docs__section" aria-labelledby="ai-spinner-reference">
@@ -326,23 +321,46 @@ export const Overview: Story = {
                   <td><code>n/a</code></td>
                   <td><code>n/a</code></td>
                   <td><code>n/a</code></td>
-                  <td>Size and styling are configured through CSS tokens.</td>
+                  <td>Spinner behavior is configured through CSS tokens and inline CSS variables.</td>
                 </tr>
               </tbody>
             </table>
           </section>
 
-          <section class="ai-spinner-docs__section" aria-labelledby="ai-spinner-snippets">
-            <h2 id="ai-spinner-snippets" class="ai-spinner-docs__title">Usage snippets</h2>
-            <pre class="ai-spinner-docs__code">{{ basicUsageSnippet }}</pre>
-            <pre class="ai-spinner-docs__code">{{ inlineColorSnippet }}</pre>
+          <section class="ai-spinner-docs__section" aria-labelledby="ai-spinner-default">
+            <h2 id="ai-spinner-default" class="ai-spinner-docs__title">Default showcase</h2>
+            <p class="ai-spinner-docs__lead">Base spinner without token or inline style overrides.</p>
+            <div class="ai-spinner-docs__preview-grid">
+              <div class="ai-spinner-docs__preview">
+                <ai-spinner></ai-spinner>
+                <p class="ai-spinner-docs__preview-label">default size (18px)</p>
+              </div>
+            </div>
+            <h3 class="ai-spinner-docs__subtitle">Usage snippet</h3>
+            <pre class="ai-spinner-docs__code"><code>{{ basicUsageSnippet }}</code></pre>
+          </section>
+
+          <section class="ai-spinner-docs__section" aria-labelledby="ai-spinner-variants">
+            <h2 id="ai-spinner-variants" class="ai-spinner-docs__title">Styled variants previews</h2>
+            <p class="ai-spinner-docs__lead">Preview-only examples using inline style overrides and token variables.</p>
+            <div class="ai-spinner-docs__preview-grid">
+              <div class="ai-spinner-docs__preview" style="--ai-spinner-size: 28px;">
+                <ai-spinner></ai-spinner>
+                <p class="ai-spinner-docs__preview-label">token size override (28px)</p>
+              </div>
+
+              <div class="ai-spinner-docs__preview" style="--ai-spinner-inline-color: #ef4444;">
+                <ai-spinner></ai-spinner>
+                <p class="ai-spinner-docs__preview-label">inline color override</p>
+              </div>
+            </div>
           </section>
 
           <section class="ai-spinner-docs__section" aria-labelledby="ai-spinner-tokens">
             <h2 id="ai-spinner-tokens" class="ai-spinner-docs__title">Style tokens playground</h2>
             <div class="ai-spinner-docs__tokens-layout">
               <fieldset class="ai-spinner-docs__token-fieldset">
-                <legend>Live token editor</legend>
+                <legend class="ai-spinner-docs__subtitle">Live token editor</legend>
                 <div class="ai-spinner-docs__token-grid">
                   @for (token of tokenControls; track token.key) {
                     <div class="ai-spinner-docs__token-row">

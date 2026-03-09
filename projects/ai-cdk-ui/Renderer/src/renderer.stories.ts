@@ -1,4 +1,3 @@
-import { signal } from '@angular/core';
 import { AiCardComponent } from '@ai-cdk/ui/Card';
 import { AiHumanFeedbackComponent } from '@ai-cdk/ui/HumanFeedback';
 import { AiQuestion, AiQuestionnaireComponent } from '@ai-cdk/ui/Questionnaire';
@@ -7,6 +6,7 @@ import {
   AiPayloadRenderRequest,
   AiPayloadRendererComponent,
 } from '@ai-cdk/ui/Renderer';
+import { signal } from '@angular/core';
 import type { Meta, StoryObj } from '@storybook/angular';
 import {
   AiLoremCallbackComponent,
@@ -92,54 +92,6 @@ const SHOWCASE_REGISTRY: readonly AiPayloadComponentRegistration[] = [
     },
   },
 ];
-
-const SHOWCASE_REGISTRY_VIEW = [
-  {
-    key: 'card',
-    component: 'AiCardComponent',
-    events: {
-      cardClick: 'onCardClick',
-    },
-    contentSlots: ['header', '', 'footer'],
-  },
-  {
-    key: 'questionnaire',
-    component: 'AiQuestionnaireComponent',
-    events: {
-      answerSubmit: 'onAnswerSubmit',
-      completed: 'onQuestionnaireCompleted',
-    },
-  },
-  {
-    key: 'humanFeedback',
-    component: 'AiHumanFeedbackComponent',
-    events: {
-      confirmed: 'onConfirmed',
-      rejected: 'onRejected',
-    },
-  },
-  {
-    key: 'callbackInput',
-    component: 'AiLoremCallbackComponent',
-    events: {
-      onAction: 'onCallbackAction',
-    },
-  },
-  {
-    key: 'nativeClick',
-    component: 'AiNativeClickSurfaceComponent',
-    events: {
-      click: 'onNativeClick',
-    },
-  },
-  {
-    key: 'modelBridge',
-    component: 'AiModelBridgeDemoComponent',
-    events: {
-      ngModelChange: 'onModelChange',
-    },
-  },
-] as const;
 
 const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
   {
@@ -290,7 +242,6 @@ export const Overview: Story = {
         payloadItems: PAYLOAD_ITEMS,
         ariaLiveOptions: ARIA_LIVE_OPTIONS,
         registry: SHOWCASE_REGISTRY,
-        registryViewJson: prettyJson(SHOWCASE_REGISTRY_VIEW),
         registrationCode: REGISTRATION_CODE,
         hostBindingCode: HOST_BINDING_CODE,
         eventHandlersCode: EVENT_HANDLERS_CODE,
@@ -342,27 +293,41 @@ export const Overview: Story = {
       template: `
         <style>
           .ai-payload-docs {
+            font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
             display: grid;
             gap: 1rem;
-            color: #0f172a;
+            color: #10233f;
+            font-size: 0.95rem;
+            line-height: 1.55;
           }
 
           .ai-payload-docs__section {
-            border: 1px solid #d1d5db;
-            border-radius: 12px;
-            padding: 0.875rem;
-            background: #ffffff;
+            border: 1px solid #d5e2f3;
+            border-radius: 16px;
+            padding: 1.1rem;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
           }
 
           .ai-payload-docs__title {
             margin: 0 0 0.5rem;
-            font-size: 1.05rem;
+            font-size: 1.24rem;
+            line-height: 1.3;
+            color: #0b1f3a;
+            letter-spacing: 0.01em;
+          }
+
+          .ai-payload-docs__subtitle {
+            margin: 0.75rem 0 0.4rem;
+            font-size: 1.02rem;
+            line-height: 1.4;
+            color: #11365e;
           }
 
           .ai-payload-docs__lead {
             margin: 0;
-            color: #334155;
-            line-height: 1.45;
+            color: #2a3f5e;
+            line-height: 1.5;
           }
 
           .ai-payload-docs__layout {
@@ -381,31 +346,26 @@ export const Overview: Story = {
 
           .ai-payload-docs__select {
             min-height: 2.1rem;
-            border: 1px solid #94a3b8;
+            border: 1px solid #8ca8c8;
             border-radius: 8px;
             background: #ffffff;
-            color: #0f172a;
+            color: #0f2746;
             padding: 0.3rem 0.5rem;
           }
 
           .ai-payload-docs__select:focus-visible {
-            outline: 2px solid #1d4ed8;
+            outline: 2px solid #0f4ea0;
             outline-offset: 2px;
-          }
-
-          .ai-payload-docs__code-title {
-            margin: 0.75rem 0 0.4rem;
-            font-size: 0.9rem;
-            color: #0f172a;
           }
 
           .ai-payload-docs__code {
             margin: 0;
-            padding: 0.625rem;
-            border-radius: 8px;
-            background: #0f172a;
-            color: #e2e8f0;
-            font: 500 0.75rem/1.4 'Menlo', 'Monaco', monospace;
+            padding: 0.8rem 0.85rem;
+            border-radius: 12px;
+            border: 1px solid #22324b;
+            background: #0f1a2c;
+            color: #d7e5ff;
+            font: 500 0.79rem/1.5 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
             white-space: pre-wrap;
           }
 
@@ -413,43 +373,54 @@ export const Overview: Story = {
             width: 100%;
             border-collapse: collapse;
             margin-top: 0.75rem;
+            font-size: 0.88rem;
           }
 
           .ai-payload-docs__table th,
           .ai-payload-docs__table td {
-            border: 1px solid #d1d5db;
-            padding: 0.625rem;
+            border: 1px solid #ccdaea;
+            padding: 0.6rem;
             text-align: left;
             vertical-align: top;
-            font-size: 0.9rem;
           }
 
           .ai-payload-docs__table thead {
-            background: #f8fafc;
+            background: #edf5ff;
+            color: #0f355f;
+          }
+
+          .ai-payload-docs__notes {
+            margin: 0.75rem 0 0;
+            padding-left: 1.1rem;
+            color: #274667;
+          }
+
+          .ai-payload-docs__notes li + li {
+            margin-top: 0.3rem;
           }
 
           .ai-payload-item {
             display: block;
             width: 100%;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
+            border: 1px solid #c7d8ec;
+            border-radius: 12px;
             padding: 0.75rem;
             margin-bottom: 0.75rem;
             text-align: left;
-            background: #f8fafc;
+            background: #f3f8ff;
             cursor: pointer;
           }
 
           .ai-payload-item--active {
-            border-color: #0f766e;
-            background: #ecfeff;
+            border-color: #1d4ed8;
+            background: #e6f0ff;
           }
 
           .ai-payload-item__title {
             display: block;
             font-size: 0.95rem;
             font-weight: 600;
-            color: #0f172a;
+            color: #0f2746;
           }
 
           .ai-payload-item__description {
@@ -457,29 +428,44 @@ export const Overview: Story = {
             margin-top: 0.25rem;
             margin-bottom: 0.5rem;
             font-size: 0.85rem;
-            color: #475569;
+            color: #355a80;
           }
 
-          .ai-payload-docs__render-target {
-            min-height: 240px;
-            margin-bottom: 0.75rem;
-            padding: 0.5rem;
-            border: 1px dashed #cbd5e1;
-            border-radius: 10px;
-            background: #f8fafc;
+          .ai-payload-docs__preview {
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
+            background: #f3f8ff;
+            padding: 0.75rem;
+          }
+
+          .ai-payload-docs__event-panel {
+            margin-top: 0.9rem;
+            border: 1px solid #cad9ed;
+            border-radius: 12px;
+            background: #f7fbff;
+            padding: 0.75rem;
           }
 
           .ai-payload-docs__event-log {
             margin: 0;
             padding-left: 1rem;
-            font: 500 0.8rem/1.35 'Menlo', 'Monaco', monospace;
-            color: #1e293b;
+            font: 500 0.8rem/1.45 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
+            color: #0f2746;
           }
 
           .ai-payload-docs__event-log-empty {
             margin: 0;
             font-size: 0.85rem;
-            color: #64748b;
+            color: #355174;
+          }
+
+          .ai-payload-docs__tokens-empty {
+            margin: 0;
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
+            background: #f3f8ff;
+            padding: 0.75rem;
+            color: #274a74;
           }
 
           @media (max-width: 900px) {
@@ -492,26 +478,11 @@ export const Overview: Story = {
         <article class="ai-payload-docs" aria-label="AiPayloadRendererComponent single-page documentation">
           <section class="ai-payload-docs__section" aria-labelledby="ai-payload-intro">
             <h2 id="ai-payload-intro" class="ai-payload-docs__title">AiPayloadRendererComponent</h2>
-            <pre class="ai-payload-docs__code"><code>import &#123;AiPayloadRendererComponent&#125; from '@ai-cdk/ui';</code></pre>
             <p class="ai-payload-docs__lead">
               AiPayloadRendererComponent resolves protocol payloads to registered components and bridges
               outputs, callback inputs, native click events, and CVA-style ngModel updates.
             </p>
-            <div class="ai-payload-docs__control-row">
-              <label for="ai-payload-aria-live">aria-live mode</label>
-              <select
-                id="ai-payload-aria-live"
-                class="ai-payload-docs__select"
-                [value]="ariaLiveMode()"
-                (change)="onAriaLiveModeChange($event)"
-              >
-                @for (option of ariaLiveOptions; track option) {
-                  <option [value]="option">{{ option }}</option>
-                }
-              </select>
-            </div>
-            <h3 class="ai-payload-docs__code-title">Registry snapshot</h3>
-            <pre class="ai-payload-docs__code">{{ registryViewJson }}</pre>
+            <pre class="ai-payload-docs__code"><code>import &#123; AiPayloadRendererComponent &#125; from '@ai-cdk/ui/Renderer';</code></pre>
           </section>
 
           <section class="ai-payload-docs__section" aria-labelledby="ai-payload-reference">
@@ -557,39 +528,47 @@ export const Overview: Story = {
                 </tr>
               </tbody>
             </table>
+            <ul class="ai-payload-docs__notes">
+              <li>Supports output event mapping, callback-input mapping, native click mapping, and CVA bridging.</li>
+              <li>Supports content projection with or without named slots using <code>contentSlots</code>.</li>
+              <li>Unknown payload keys are skipped and reported in console diagnostics.</li>
+            </ul>
           </section>
 
-          <div class="ai-payload-docs__layout">
-            <aside class="ai-payload-docs__section" aria-label="Payload catalog">
-              <h2 class="ai-payload-docs__title">Payload catalog (JSON)</h2>
-              @for (item of payloadItems; track item.key) {
-                <button
-                  type="button"
-                  class="ai-payload-item"
-                  [class.ai-payload-item--active]="item.key === activePayloadKey()"
-                  [attr.aria-pressed]="item.key === activePayloadKey()"
-                  (click)="selectPayload(item.key)"
-                >
-                  <span class="ai-payload-item__title">{{ item.title }}</span>
-                  <span class="ai-payload-item__description">{{ item.description }}</span>
-                  <pre class="ai-payload-docs__code">{{ toJson(item.renderRequest) }}</pre>
-                </button>
-              }
-            </aside>
+          <section class="ai-payload-docs__section" aria-labelledby="ai-payload-default">
+            <h2 id="ai-payload-default" class="ai-payload-docs__title">Default showcase</h2>
+            <p class="ai-payload-docs__lead">Default live preview using the currently selected payload and handler map.</p>
 
-            <section class="ai-payload-docs__section" aria-label="Live renderer output">
-              <h2 class="ai-payload-docs__title">Live renderer output</h2>
+            <div class="ai-payload-docs__control-row">
+              <label for="ai-payload-aria-live">ARIA live mode</label>
+              <select
+                id="ai-payload-aria-live"
+                class="ai-payload-docs__select"
+                [value]="ariaLiveMode()"
+                (change)="onAriaLiveModeChange($event)"
+              >
+                @for (mode of ariaLiveOptions; track mode) {
+                  <option [value]="mode">{{ mode }}</option>
+                }
+              </select>
+            </div>
 
-              <div class="ai-payload-docs__render-target">
-                <ai-payload-renderer
-                  [registry]="registry"
-                  [renderRequest]="getActiveRenderRequest()"
-                  [eventHandlers]="eventHandlers"
-                  [ariaLiveMode]="ariaLiveMode()"
-                ></ai-payload-renderer>
-              </div>
+            <div class="ai-payload-docs__preview">
+              <ai-payload-renderer
+                [registry]="registry"
+                [renderRequest]="getActiveRenderRequest()"
+                [eventHandlers]="eventHandlers"
+                [ariaLiveMode]="ariaLiveMode()"
+              ></ai-payload-renderer>
+            </div>
 
-              <h3 class="ai-payload-docs__title">Event log</h3>
+            <h3 class="ai-payload-docs__subtitle">Usage snippets</h3>
+            <pre class="ai-payload-docs__code">{{ registrationCode }}</pre>
+            <pre class="ai-payload-docs__code">{{ eventHandlersCode }}</pre>
+            <pre class="ai-payload-docs__code">{{ hostBindingCode }}</pre>
+
+            <div class="ai-payload-docs__event-panel" aria-live="polite">
+              <h3 class="ai-payload-docs__subtitle">Event log</h3>
               @if (eventLog().length === 0) {
                 <p class="ai-payload-docs__event-log-empty">No events yet. Interact with the rendered component.</p>
               } @else {
@@ -599,17 +578,47 @@ export const Overview: Story = {
                   }
                 </ol>
               }
-            </section>
-          </div>
+            </div>
+          </section>
 
-          <section class="ai-payload-docs__section" aria-labelledby="ai-payload-snippets">
-            <h2 id="ai-payload-snippets" class="ai-payload-docs__title">Consumer setup snippets</h2>
-            <h3 class="ai-payload-docs__code-title">Registry</h3>
-            <pre class="ai-payload-docs__code">{{ registrationCode }}</pre>
-            <h3 class="ai-payload-docs__code-title">Event handlers map</h3>
-            <pre class="ai-payload-docs__code">{{ eventHandlersCode }}</pre>
-            <h3 class="ai-payload-docs__code-title">Host usage</h3>
-            <pre class="ai-payload-docs__code">{{ hostBindingCode }}</pre>
+          <section class="ai-payload-docs__section" aria-labelledby="ai-payload-variants">
+            <h2 id="ai-payload-variants" class="ai-payload-docs__title">Styled variants previews</h2>
+            <p class="ai-payload-docs__lead">Preview-only payload variants rendered through the same dynamic host.</p>
+
+            <div class="ai-payload-docs__layout">
+              <aside aria-label="Payload catalog">
+                @for (item of payloadItems; track item.key) {
+                  <button
+                    type="button"
+                    class="ai-payload-item"
+                    [class.ai-payload-item--active]="item.key === activePayloadKey()"
+                    [attr.aria-pressed]="item.key === activePayloadKey()"
+                    (click)="selectPayload(item.key)"
+                  >
+                    <span class="ai-payload-item__title">{{ item.title }}</span>
+                    <span class="ai-payload-item__description">{{ item.description }}</span>
+                    <pre class="ai-payload-docs__code">{{ toJson(item.renderRequest) }}</pre>
+                  </button>
+                }
+              </aside>
+
+              <div class="ai-payload-docs__preview" aria-label="Variant renderer output">
+                <ai-payload-renderer
+                  [registry]="registry"
+                  [renderRequest]="getActiveRenderRequest()"
+                  [eventHandlers]="eventHandlers"
+                  [ariaLiveMode]="ariaLiveMode()"
+                ></ai-payload-renderer>
+              </div>
+            </div>
+          </section>
+
+          <section class="ai-payload-docs__section" aria-labelledby="ai-payload-tokens">
+            <h2 id="ai-payload-tokens" class="ai-payload-docs__title">Style tokens playground</h2>
+            <p class="ai-payload-docs__tokens-empty">
+              AiPayloadRendererComponent does not expose public CSS custom properties today. Styling is controlled
+              by rendered target components and their own token APIs.
+            </p>
           </section>
         </article>
       `,

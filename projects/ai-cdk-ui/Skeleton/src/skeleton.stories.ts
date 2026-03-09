@@ -132,26 +132,40 @@ export const Overview: Story = {
       template: `
         <style>
           .ai-skeleton-docs {
+            font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
             display: grid;
             gap: 1rem;
-            color: #0f172a;
+            color: #10233f;
+            font-size: 0.95rem;
+            line-height: 1.55;
           }
 
           .ai-skeleton-docs__section {
-            border: 1px solid #cbd5e1;
-            border-radius: 14px;
-            padding: 1rem;
-            background: #ffffff;
+            border: 1px solid #d5e2f3;
+            border-radius: 16px;
+            padding: 1.1rem;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
           }
 
           .ai-skeleton-docs__title {
             margin: 0 0 0.5rem;
-            font-size: 1.12rem;
+            font-size: 1.24rem;
+            line-height: 1.3;
+            color: #0b1f3a;
+            letter-spacing: 0.01em;
+          }
+
+          .ai-skeleton-docs__subtitle {
+            margin: 0 0 0.5rem;
+            font-size: 1.02rem;
+            line-height: 1.4;
+            color: #11365e;
           }
 
           .ai-skeleton-docs__lead {
             margin: 0;
-            color: #334155;
+            color: #2a3f5e;
             line-height: 1.5;
           }
 
@@ -167,44 +181,46 @@ export const Overview: Story = {
             gap: 0.625rem;
             align-content: center;
             min-height: 120px;
-            border: 1px dashed #cbd5e1;
-            border-radius: 10px;
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
             padding: 0.75rem;
-            background: #f8fafc;
+            background: #f3f8ff;
           }
 
           .ai-skeleton-docs__preview-label {
             margin: 0;
             font-size: 0.84rem;
-            color: #334155;
+            color: #274a74;
           }
 
           .ai-skeleton-docs__table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 0.75rem;
+            font-size: 0.88rem;
           }
 
           .ai-skeleton-docs__table th,
           .ai-skeleton-docs__table td {
-            border: 1px solid #d1d5db;
-            padding: 0.625rem;
+            border: 1px solid #ccdaea;
+            padding: 0.6rem;
             text-align: left;
             vertical-align: top;
-            font-size: 0.9rem;
           }
 
           .ai-skeleton-docs__table thead {
-            background: #f8fafc;
+            background: #edf5ff;
+            color: #0f355f;
           }
 
           .ai-skeleton-docs__code {
-            margin: 0.65rem 0 0;
-            border-radius: 10px;
-            padding: 0.75rem;
-            background: #0f172a;
-            color: #e2e8f0;
-            font: 500 0.78rem/1.45 'Menlo', 'Monaco', monospace;
+            margin: 0;
+            border-radius: 12px;
+            border: 1px solid #22324b;
+            padding: 0.8rem 0.85rem;
+            background: #0f1a2c;
+            color: #d7e5ff;
+            font: 500 0.79rem/1.5 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
             overflow-x: auto;
           }
 
@@ -237,22 +253,23 @@ export const Overview: Story = {
             gap: 0.5rem;
             font-size: 0.88rem;
             font-weight: 600;
+            color: #143960;
           }
 
           .ai-skeleton-docs__token-label code {
             padding: 0.125rem 0.375rem;
             border-radius: 6px;
-            background: #f1f5f9;
+            background: #e8f0fb;
             font-size: 0.75rem;
           }
 
           .ai-skeleton-docs__token-input {
             min-height: 2.1rem;
             width: 100%;
-            border: 1px solid #94a3b8;
+            border: 1px solid #8ca8c8;
             border-radius: 8px;
             background: #ffffff;
-            color: #0f172a;
+            color: #0f2746;
             padding: 0.45rem 0.6rem;
           }
 
@@ -261,13 +278,13 @@ export const Overview: Story = {
           }
 
           .ai-skeleton-docs__token-input:focus-visible {
-            outline: 2px solid #1d4ed8;
+            outline: 2px solid #0f4ea0;
             outline-offset: 2px;
           }
 
           .ai-skeleton-docs__token-default {
             margin: 0;
-            color: #475569;
+            color: #355779;
             font-size: 0.78rem;
           }
 
@@ -276,9 +293,9 @@ export const Overview: Story = {
             display: grid;
             align-content: center;
             gap: 0.75rem;
-            border: 1px dashed #cbd5e1;
-            border-radius: 10px;
-            background: #f8fafc;
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
+            background: #f3f8ff;
             padding: 0.75rem;
           }
 
@@ -292,36 +309,11 @@ export const Overview: Story = {
         <article class="ai-skeleton-docs" aria-label="AiSkeletonComponent single-page documentation">
           <section class="ai-skeleton-docs__section" aria-labelledby="ai-skeleton-intro">
             <h2 id="ai-skeleton-intro" class="ai-skeleton-docs__title">AiSkeletonComponent</h2>
-            <pre class="ai-skeleton-docs__code"><code>import &#123;AiSkeletonComponent&#125; from '@ai-cdk/ui';</code></pre>
             <p class="ai-skeleton-docs__lead">
               AiSkeletonComponent renders loading placeholders with optional shimmer animation and CSS-token
               customization for dimensions, radius, and color.
             </p>
-          </section>
-
-          <section class="ai-skeleton-docs__section" aria-labelledby="ai-skeleton-functional">
-            <h2 id="ai-skeleton-functional" class="ai-skeleton-docs__title">Functional API showcase</h2>
-            <p class="ai-skeleton-docs__lead">Animated, static, and line-placeholder variants.</p>
-
-            <div class="ai-skeleton-docs__preview-grid">
-              <div class="ai-skeleton-docs__preview">
-                <ai-skeleton [animate]="true"></ai-skeleton>
-                <p class="ai-skeleton-docs__preview-label">animate: true</p>
-              </div>
-
-              <div class="ai-skeleton-docs__preview">
-                <ai-skeleton [animate]="false"></ai-skeleton>
-                <p class="ai-skeleton-docs__preview-label">animate: false</p>
-              </div>
-
-              <div class="ai-skeleton-docs__preview">
-                <ai-skeleton
-                  [animate]="true"
-                  style="--ai-skeleton-width: 280px; --ai-skeleton-height: 14px; --ai-skeleton-border-radius: 8px;"
-                ></ai-skeleton>
-                <p class="ai-skeleton-docs__preview-label">card line placeholder</p>
-              </div>
-            </div>
+            <pre class="ai-skeleton-docs__code"><code>import &#123; AiSkeletonComponent &#125; from '@ai-cdk/ui/Skeleton';</code></pre>
           </section>
 
           <section class="ai-skeleton-docs__section" aria-labelledby="ai-skeleton-reference">
@@ -348,17 +340,43 @@ export const Overview: Story = {
             </table>
           </section>
 
-          <section class="ai-skeleton-docs__section" aria-labelledby="ai-skeleton-snippets">
-            <h2 id="ai-skeleton-snippets" class="ai-skeleton-docs__title">Usage snippets</h2>
-            <pre class="ai-skeleton-docs__code">{{ basicUsageSnippet }}</pre>
-            <pre class="ai-skeleton-docs__code">{{ placeholderSnippet }}</pre>
+          <section class="ai-skeleton-docs__section" aria-labelledby="ai-skeleton-default">
+            <h2 id="ai-skeleton-default" class="ai-skeleton-docs__title">Default showcase</h2>
+            <p class="ai-skeleton-docs__lead">Base animated loading placeholder with default dimensions and colors.</p>
+            <div class="ai-skeleton-docs__preview-grid">
+              <div class="ai-skeleton-docs__preview">
+                <ai-skeleton [animate]="true"></ai-skeleton>
+                <p class="ai-skeleton-docs__preview-label">animate: true</p>
+              </div>
+            </div>
+            <h3 class="ai-skeleton-docs__subtitle">Usage snippet</h3>
+            <pre class="ai-skeleton-docs__code"><code>{{ basicUsageSnippet }}</code></pre>
+          </section>
+
+          <section class="ai-skeleton-docs__section" aria-labelledby="ai-skeleton-variants">
+            <h2 id="ai-skeleton-variants" class="ai-skeleton-docs__title">Styled variants previews</h2>
+            <p class="ai-skeleton-docs__lead">Preview-only variants using animation and token overrides.</p>
+            <div class="ai-skeleton-docs__preview-grid">
+              <div class="ai-skeleton-docs__preview">
+                <ai-skeleton [animate]="false"></ai-skeleton>
+                <p class="ai-skeleton-docs__preview-label">animate: false</p>
+              </div>
+
+              <div class="ai-skeleton-docs__preview">
+                <ai-skeleton
+                  [animate]="true"
+                  style="--ai-skeleton-width: 280px; --ai-skeleton-height: 14px; --ai-skeleton-border-radius: 8px;"
+                ></ai-skeleton>
+                <p class="ai-skeleton-docs__preview-label">card line placeholder</p>
+              </div>
+            </div>
           </section>
 
           <section class="ai-skeleton-docs__section" aria-labelledby="ai-skeleton-tokens">
             <h2 id="ai-skeleton-tokens" class="ai-skeleton-docs__title">Style tokens playground</h2>
             <div class="ai-skeleton-docs__tokens-layout">
               <fieldset class="ai-skeleton-docs__token-fieldset">
-                <legend>Live token editor</legend>
+                <legend class="ai-skeleton-docs__subtitle">Live token editor</legend>
                 <div class="ai-skeleton-docs__token-grid">
                   @for (token of tokenControls; track token.key) {
                     <div class="ai-skeleton-docs__token-row">

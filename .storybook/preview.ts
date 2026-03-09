@@ -10,8 +10,19 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Welcome', 'UI', 'Chat'],
+        order: [
+          'Getting Started',
+          ['Introduction', 'Installation', 'AI-Protocol Examples'],
+          'UI',
+          'Chat',
+        ],
       },
+      theme: {
+        base: 'dark',
+        brandTitle: 'AI CDK',
+        brandUrl: './',
+      },
+      showPanel: false,
     },
   },
 };

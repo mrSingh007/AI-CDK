@@ -380,26 +380,40 @@ export const Overview: Story = {
       template: `
         <style>
           .ai-human-feedback-docs {
+            font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
             display: grid;
             gap: 1rem;
-            color: #0f172a;
+            color: #10233f;
+            font-size: 0.95rem;
+            line-height: 1.55;
           }
 
           .ai-human-feedback-docs__section {
-            border: 1px solid #cbd5e1;
-            border-radius: 14px;
-            padding: 1rem;
-            background: #ffffff;
+            border: 1px solid #d5e2f3;
+            border-radius: 16px;
+            padding: 1.1rem;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
           }
 
           .ai-human-feedback-docs__title {
             margin: 0 0 0.5rem;
-            font-size: 1.12rem;
+            font-size: 1.24rem;
+            line-height: 1.3;
+            color: #0b1f3a;
+            letter-spacing: 0.01em;
+          }
+
+          .ai-human-feedback-docs__subtitle {
+            margin: 0 0 0.5rem;
+            font-size: 1.02rem;
+            line-height: 1.4;
+            color: #11365e;
           }
 
           .ai-human-feedback-docs__lead {
             margin: 0;
-            color: #334155;
+            color: #2a3f5e;
             line-height: 1.5;
           }
 
@@ -411,28 +425,36 @@ export const Overview: Story = {
           }
 
           .ai-human-feedback-docs__demo {
-            border: 1px dashed #cbd5e1;
-            border-radius: 10px;
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
             padding: 0.75rem;
-            background: #f8fafc;
+            background: #f3f8ff;
           }
 
           .ai-human-feedback-docs__demo-title {
             margin: 0 0 0.5rem;
             font-size: 0.9rem;
-            color: #334155;
+            color: #274a74;
+          }
+
+          .ai-human-feedback-docs__event-panel {
+            margin-top: 0.9rem;
+            border: 1px solid #cad9ed;
+            border-radius: 12px;
+            background: #f7fbff;
+            padding: 0.75rem;
           }
 
           .ai-human-feedback-docs__event-log {
             margin: 0;
             padding-left: 1.125rem;
-            color: #1e293b;
-            font: 500 0.8rem/1.4 'Menlo', 'Monaco', monospace;
+            color: #0f2746;
+            font: 500 0.8rem/1.45 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
           }
 
           .ai-human-feedback-docs__event-empty {
             margin: 0;
-            color: #475569;
+            color: #355174;
             font-size: 0.9rem;
           }
 
@@ -440,28 +462,30 @@ export const Overview: Story = {
             width: 100%;
             border-collapse: collapse;
             margin-top: 0.75rem;
+            font-size: 0.88rem;
           }
 
           .ai-human-feedback-docs__table th,
           .ai-human-feedback-docs__table td {
-            border: 1px solid #d1d5db;
-            padding: 0.625rem;
+            border: 1px solid #ccdaea;
+            padding: 0.6rem;
             text-align: left;
             vertical-align: top;
-            font-size: 0.9rem;
           }
 
           .ai-human-feedback-docs__table thead {
-            background: #f8fafc;
+            background: #edf5ff;
+            color: #0f355f;
           }
 
           .ai-human-feedback-docs__code {
-            margin: 0.65rem 0 0;
-            border-radius: 10px;
-            padding: 0.75rem;
-            background: #0f172a;
-            color: #e2e8f0;
-            font: 500 0.78rem/1.45 'Menlo', 'Monaco', monospace;
+            margin: 0;
+            border-radius: 12px;
+            border: 1px solid #22324b;
+            padding: 0.8rem 0.85rem;
+            background: #0f1a2c;
+            color: #d7e5ff;
+            font: 500 0.79rem/1.5 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
             overflow-x: auto;
           }
 
@@ -497,22 +521,23 @@ export const Overview: Story = {
             gap: 0.5rem;
             font-size: 0.88rem;
             font-weight: 600;
+            color: #143960;
           }
 
           .ai-human-feedback-docs__token-label code {
             padding: 0.125rem 0.375rem;
             border-radius: 6px;
-            background: #f1f5f9;
+            background: #e8f0fb;
             font-size: 0.75rem;
           }
 
           .ai-human-feedback-docs__token-input {
             min-height: 2.1rem;
             width: 100%;
-            border: 1px solid #94a3b8;
+            border: 1px solid #8ca8c8;
             border-radius: 8px;
             background: #ffffff;
-            color: #0f172a;
+            color: #0f2746;
             padding: 0.45rem 0.6rem;
           }
 
@@ -521,20 +546,20 @@ export const Overview: Story = {
           }
 
           .ai-human-feedback-docs__token-input:focus-visible {
-            outline: 2px solid #1d4ed8;
+            outline: 2px solid #0f4ea0;
             outline-offset: 2px;
           }
 
           .ai-human-feedback-docs__token-default {
             margin: 0;
-            color: #475569;
+            color: #355779;
             font-size: 0.78rem;
           }
 
           .ai-human-feedback-docs__token-preview {
-            border: 1px dashed #cbd5e1;
-            border-radius: 10px;
-            background: #f8fafc;
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
+            background: #f3f8ff;
             padding: 0.75rem;
           }
 
@@ -552,60 +577,11 @@ export const Overview: Story = {
         <article class="ai-human-feedback-docs" aria-label="AiHumanFeedbackComponent single-page documentation">
           <section class="ai-human-feedback-docs__section" aria-labelledby="ai-human-feedback-intro">
             <h2 id="ai-human-feedback-intro" class="ai-human-feedback-docs__title">AiHumanFeedbackComponent</h2>
-            <pre class="ai-human-feedback-docs__code"><code>import &#123;AiHumanFeedbackComponent&#125; from '@ai-cdk/ui';</code></pre>
             <p class="ai-human-feedback-docs__lead">
               AiHumanFeedbackComponent captures explicit user approval or rejection with accessible button
               semantics and token-driven styling.
             </p>
-          </section>
-
-          <section class="ai-human-feedback-docs__section" aria-labelledby="ai-human-feedback-functional">
-            <h2 id="ai-human-feedback-functional" class="ai-human-feedback-docs__title">Functional API showcase</h2>
-            <p class="ai-human-feedback-docs__lead">Default and long-prompt variants with output event tracking.</p>
-
-            <div class="ai-human-feedback-docs__demo-grid">
-              <div class="ai-human-feedback-docs__demo">
-                <h3 class="ai-human-feedback-docs__demo-title">Default variant</h3>
-                <ai-human-feedback
-                  [text]="'The agent is ready to continue. Should it proceed with this action?'"
-                  [approveButtonText]="'Yes, proceed'"
-                  [cancelButtonText]="'No, cancel'"
-                  (confirmed)="onConfirmed()"
-                  (rejected)="onRejected()"
-                ></ai-human-feedback>
-              </div>
-
-              <div class="ai-human-feedback-docs__demo">
-                <h3 class="ai-human-feedback-docs__demo-title">Long prompt + custom buttons</h3>
-                <ai-human-feedback
-                  style="
-                  --ai-human-feedback-button-padding:10px;
-                  --ai-human-feedback-button-flex:0 0 auto;
-                  --ai-human-feedback-approve-height:auto;
-                  --ai-human-feedback-cancel-button-border:0;
-                  --ai-human-feedback-approve-button-border:0;
-                  --ai-human-feedback-cancel-height:30px;
-                  --ai-human-feedback-button-font-weight:300;
-                  "
-                  [text]="'The agent will apply changes to your project files and run verification checks. Confirm only if you want to continue now.'"
-                  [approveButtonText]="'Approve changes'"
-                  [cancelButtonText]="'Reject for now'"
-                  (confirmed)="onConfirmed()"
-                  (rejected)="onRejected()"
-                ></ai-human-feedback>
-              </div>
-            </div>
-
-            <h3 class="ai-human-feedback-docs__title">Event log</h3>
-            @if (eventLog().length === 0) {
-              <p class="ai-human-feedback-docs__event-empty">No events yet. Click any action button to inspect outputs.</p>
-            } @else {
-              <ol class="ai-human-feedback-docs__event-log">
-                @for (entry of eventLog(); track entry) {
-                  <li>{{ entry }}</li>
-                }
-              </ol>
-            }
+            <pre class="ai-human-feedback-docs__code"><code>import &#123; AiHumanFeedbackComponent &#125; from '@ai-cdk/ui/HumanFeedback';</code></pre>
           </section>
 
           <section class="ai-human-feedback-docs__section" aria-labelledby="ai-human-feedback-reference">
@@ -660,17 +636,85 @@ export const Overview: Story = {
             </table>
           </section>
 
-          <section class="ai-human-feedback-docs__section" aria-labelledby="ai-human-feedback-snippets">
-            <h2 id="ai-human-feedback-snippets" class="ai-human-feedback-docs__title">Usage snippets</h2>
-            <pre class="ai-human-feedback-docs__code">{{ basicUsageSnippet }}</pre>
-            <pre class="ai-human-feedback-docs__code">{{ tokenUsageSnippet }}</pre>
+          <section class="ai-human-feedback-docs__section" aria-labelledby="ai-human-feedback-default">
+            <h2 id="ai-human-feedback-default" class="ai-human-feedback-docs__title">Default showcase</h2>
+            <p class="ai-human-feedback-docs__lead">Base approval/rejection prompt without style overrides.</p>
+
+            <div class="ai-human-feedback-docs__demo-grid">
+              <div class="ai-human-feedback-docs__demo">
+                <h3 class="ai-human-feedback-docs__demo-title">Default variant</h3>
+                <ai-human-feedback
+                  [text]="'The agent is ready to continue. Should it proceed with this action?'"
+                  [approveButtonText]="'Yes, proceed'"
+                  [cancelButtonText]="'No, cancel'"
+                  (confirmed)="onConfirmed()"
+                  (rejected)="onRejected()"
+                ></ai-human-feedback>
+              </div>
+            </div>
+
+            <h3 class="ai-human-feedback-docs__subtitle">Usage snippets</h3>
+            <pre class="ai-human-feedback-docs__code"><code>{{ basicUsageSnippet }}</code></pre>
+            <pre class="ai-human-feedback-docs__code"><code>{{ tokenUsageSnippet }}</code></pre>
+
+            <div class="ai-human-feedback-docs__event-panel" aria-live="polite">
+              <h3 class="ai-human-feedback-docs__subtitle">Event log</h3>
+              @if (eventLog().length === 0) {
+                <p class="ai-human-feedback-docs__event-empty">No events yet. Click any action button to inspect outputs.</p>
+              } @else {
+                <ol class="ai-human-feedback-docs__event-log">
+                  @for (entry of eventLog(); track entry) {
+                    <li>{{ entry }}</li>
+                  }
+                </ol>
+              }
+            </div>
+          </section>
+
+          <section class="ai-human-feedback-docs__section" aria-labelledby="ai-human-feedback-variants">
+            <h2 id="ai-human-feedback-variants" class="ai-human-feedback-docs__title">Styled variants previews</h2>
+            <p class="ai-human-feedback-docs__lead">Preview-only variants using content and token overrides.</p>
+
+            <div class="ai-human-feedback-docs__demo-grid">
+              <div class="ai-human-feedback-docs__demo">
+                <h3 class="ai-human-feedback-docs__demo-title">Long prompt + compact actions</h3>
+                <ai-human-feedback
+                  style="
+                  --ai-human-feedback-button-padding:10px;
+                  --ai-human-feedback-button-flex:0 0 auto;
+                  --ai-human-feedback-approve-height:auto;
+                  --ai-human-feedback-cancel-button-border:0;
+                  --ai-human-feedback-approve-button-border:0;
+                  --ai-human-feedback-cancel-height:30px;
+                  --ai-human-feedback-button-font-weight:300;
+                  "
+                  [text]="'The agent will apply changes to your project files and run verification checks. Confirm only if you want to continue now.'"
+                  [approveButtonText]="'Approve changes'"
+                  [cancelButtonText]="'Reject for now'"
+                  (confirmed)="onConfirmed()"
+                  (rejected)="onRejected()"
+                ></ai-human-feedback>
+              </div>
+
+              <div class="ai-human-feedback-docs__demo">
+                <h3 class="ai-human-feedback-docs__demo-title">Warm accent token variant</h3>
+                <ai-human-feedback
+                  style="--ai-human-feedback-bg:#fff8ed; --ai-human-feedback-border:1px solid #f7c98a; --ai-human-feedback-approve-bg:#c2410c; --ai-human-feedback-approve-hover-bg:#9a3412; --ai-human-feedback-approve-button-border:1px solid #9a3412;"
+                  [text]="'Token-styled confirmation prompt for highlighted user actions.'"
+                  [approveButtonText]="'Approve'"
+                  [cancelButtonText]="'Dismiss'"
+                  (confirmed)="onConfirmed()"
+                  (rejected)="onRejected()"
+                ></ai-human-feedback>
+              </div>
+            </div>
           </section>
 
           <section class="ai-human-feedback-docs__section" aria-labelledby="ai-human-feedback-tokens">
             <h2 id="ai-human-feedback-tokens" class="ai-human-feedback-docs__title">Style tokens playground</h2>
             <div class="ai-human-feedback-docs__tokens-layout">
               <fieldset class="ai-human-feedback-docs__token-fieldset">
-                <legend>Live token editor</legend>
+                <legend class="ai-human-feedback-docs__subtitle">Live token editor</legend>
                 <div class="ai-human-feedback-docs__token-grid">
                   @for (token of tokenControls; track token.key) {
                     <div class="ai-human-feedback-docs__token-row">

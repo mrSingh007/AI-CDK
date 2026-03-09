@@ -401,26 +401,40 @@ export const Overview: Story = {
       template: `
         <style>
           .ai-chat-input-docs {
+            font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
             display: grid;
             gap: 1rem;
-            color: #0f172a;
+            color: #10233f;
+            font-size: 0.95rem;
+            line-height: 1.55;
           }
 
           .ai-chat-input-docs__section {
-            border: 1px solid #cbd5e1;
-            border-radius: 14px;
-            padding: 1rem;
-            background: #ffffff;
+            border: 1px solid #d5e2f3;
+            border-radius: 16px;
+            padding: 1.1rem;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
           }
 
           .ai-chat-input-docs__title {
             margin: 0 0 0.5rem;
-            font-size: 1.12rem;
+            font-size: 1.24rem;
+            line-height: 1.3;
+            color: #0b1f3a;
+            letter-spacing: 0.01em;
+          }
+
+          .ai-chat-input-docs__subtitle {
+            margin: 0 0 0.5rem;
+            font-size: 1.02rem;
+            line-height: 1.4;
+            color: #11365e;
           }
 
           .ai-chat-input-docs__lead {
             margin: 0;
-            color: #334155;
+            color: #2a3f5e;
             line-height: 1.5;
           }
 
@@ -432,10 +446,10 @@ export const Overview: Story = {
           }
 
           .ai-chat-input-docs__demo {
-            border: 1px dashed #cbd5e1;
-            border-radius: 10px;
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
             padding: 0.75rem;
-            background: #f8fafc;
+            background: #f3f8ff;
             display: grid;
             gap: 0.6rem;
           }
@@ -443,19 +457,27 @@ export const Overview: Story = {
           .ai-chat-input-docs__demo-title {
             margin: 0;
             font-size: 0.9rem;
-            color: #334155;
+            color: #274a74;
+          }
+
+          .ai-chat-input-docs__event-panel {
+            margin-top: 0.9rem;
+            border: 1px solid #cad9ed;
+            border-radius: 12px;
+            background: #f7fbff;
+            padding: 0.75rem;
           }
 
           .ai-chat-input-docs__event-log {
             margin: 0;
             padding-left: 1.125rem;
-            color: #1e293b;
-            font: 500 0.8rem/1.4 'Menlo', 'Monaco', monospace;
+            color: #0f2746;
+            font: 500 0.8rem/1.45 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
           }
 
           .ai-chat-input-docs__event-empty {
             margin: 0;
-            color: #475569;
+            color: #355174;
             font-size: 0.9rem;
           }
 
@@ -463,28 +485,30 @@ export const Overview: Story = {
             width: 100%;
             border-collapse: collapse;
             margin-top: 0.75rem;
+            font-size: 0.88rem;
           }
 
           .ai-chat-input-docs__table th,
           .ai-chat-input-docs__table td {
-            border: 1px solid #d1d5db;
-            padding: 0.625rem;
+            border: 1px solid #ccdaea;
+            padding: 0.6rem;
             text-align: left;
             vertical-align: top;
-            font-size: 0.9rem;
           }
 
           .ai-chat-input-docs__table thead {
-            background: #f8fafc;
+            background: #edf5ff;
+            color: #0f355f;
           }
 
           .ai-chat-input-docs__code {
-            margin: 0.65rem 0 0;
-            border-radius: 10px;
-            padding: 0.75rem;
-            background: #0f172a;
-            color: #e2e8f0;
-            font: 500 0.78rem/1.45 'Menlo', 'Monaco', monospace;
+            margin: 0;
+            border-radius: 12px;
+            border: 1px solid #22324b;
+            padding: 0.8rem 0.85rem;
+            background: #0f1a2c;
+            color: #d7e5ff;
+            font: 500 0.79rem/1.5 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
             overflow-x: auto;
           }
 
@@ -517,22 +541,23 @@ export const Overview: Story = {
             gap: 0.5rem;
             font-size: 0.88rem;
             font-weight: 600;
+            color: #143960;
           }
 
           .ai-chat-input-docs__token-label code {
             padding: 0.125rem 0.375rem;
             border-radius: 6px;
-            background: #f1f5f9;
+            background: #e8f0fb;
             font-size: 0.75rem;
           }
 
           .ai-chat-input-docs__token-input {
             min-height: 2.1rem;
             width: 100%;
-            border: 1px solid #94a3b8;
+            border: 1px solid #8ca8c8;
             border-radius: 8px;
             background: #ffffff;
-            color: #0f172a;
+            color: #0f2746;
             padding: 0.45rem 0.6rem;
           }
 
@@ -541,20 +566,20 @@ export const Overview: Story = {
           }
 
           .ai-chat-input-docs__token-input:focus-visible {
-            outline: 2px solid #1d4ed8;
+            outline: 2px solid #0f4ea0;
             outline-offset: 2px;
           }
 
           .ai-chat-input-docs__token-default {
             margin: 0;
-            color: #475569;
+            color: #355779;
             font-size: 0.78rem;
           }
 
           .ai-chat-input-docs__token-preview {
-            border: 1px dashed #cbd5e1;
-            border-radius: 10px;
-            background: #f8fafc;
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
+            background: #f3f8ff;
             padding: 0.75rem;
           }
 
@@ -568,57 +593,11 @@ export const Overview: Story = {
         <article class="ai-chat-input-docs" aria-label="AiChatTextInputComponent single-page documentation">
           <section class="ai-chat-input-docs__section" aria-labelledby="ai-chat-input-intro">
             <h2 id="ai-chat-input-intro" class="ai-chat-input-docs__title">AiChatTextInputComponent</h2>
-            <pre class="ai-chat-input-docs__code"><code>import &#123;AiChatTextInputComponent&#125; from '@ai-cdk/ui/ChatTextInput';</code></pre>
             <p class="ai-chat-input-docs__lead">
               AiChatTextInputComponent provides a reusable chat composer with submit-on-enter behavior,
               optional attachments, and a single typed submit payload.
             </p>
-          </section>
-
-          <section class="ai-chat-input-docs__section" aria-labelledby="ai-chat-input-functional">
-            <h2 id="ai-chat-input-functional" class="ai-chat-input-docs__title">Functional API showcase</h2>
-            <p class="ai-chat-input-docs__lead">Default mode, single-file mode, and multi-file mode with shared event log.</p>
-
-            <div class="ai-chat-input-docs__demo-grid">
-              <div class="ai-chat-input-docs__demo">
-                <h3 class="ai-chat-input-docs__demo-title">Text only</h3>
-                <ai-chat-text-input
-                  [placeholder]="'Wie kann ich dir heute helfen?'"
-                  (submitted)="onSubmitted($event)"
-                ></ai-chat-text-input>
-              </div>
-
-              <div class="ai-chat-input-docs__demo">
-                <h3 class="ai-chat-input-docs__demo-title">Single-file upload</h3>
-                <ai-chat-text-input
-                  [placeholder]="'Ask with one attachment'"
-                  [acceptFileFormats]="['.pdf', '.png', '.jpg']"
-                  [allowMultipleFiles]="false"
-                  (submitted)="onSubmitted($event)"
-                ></ai-chat-text-input>
-              </div>
-
-              <div class="ai-chat-input-docs__demo">
-                <h3 class="ai-chat-input-docs__demo-title">Multi-file upload</h3>
-                <ai-chat-text-input
-                  [placeholder]="'Ask with multiple files'"
-                  [acceptFileFormats]="['.pdf', '.png', '.jpg', '.txt']"
-                  [allowMultipleFiles]="true"
-                  (submitted)="onSubmitted($event)"
-                ></ai-chat-text-input>
-              </div>
-            </div>
-
-            <h3 class="ai-chat-input-docs__title">Event log</h3>
-            @if (eventLog().length === 0) {
-              <p class="ai-chat-input-docs__event-empty">No submit events yet. Send a message in any demo.</p>
-            } @else {
-              <ol class="ai-chat-input-docs__event-log">
-                @for (entry of eventLog(); track entry) {
-                  <li>{{ entry }}</li>
-                }
-              </ol>
-            }
+            <pre class="ai-chat-input-docs__code"><code>import &#123; AiChatTextInputComponent &#125; from '@ai-cdk/ui/ChatTextInput';</code></pre>
           </section>
 
           <section class="ai-chat-input-docs__section" aria-labelledby="ai-chat-input-reference">
@@ -687,17 +666,78 @@ export const Overview: Story = {
             </table>
           </section>
 
-          <section class="ai-chat-input-docs__section" aria-labelledby="ai-chat-input-snippets">
-            <h2 id="ai-chat-input-snippets" class="ai-chat-input-docs__title">Usage snippets</h2>
-            <pre class="ai-chat-input-docs__code">{{ basicUsageSnippet }}</pre>
-            <pre class="ai-chat-input-docs__code">{{ uploadUsageSnippet }}</pre>
+          <section class="ai-chat-input-docs__section" aria-labelledby="ai-chat-input-default">
+            <h2 id="ai-chat-input-default" class="ai-chat-input-docs__title">Default showcase</h2>
+            <p class="ai-chat-input-docs__lead">Base chat composer without style overrides.</p>
+            <div class="ai-chat-input-docs__demo-grid">
+              <div class="ai-chat-input-docs__demo">
+                <h3 class="ai-chat-input-docs__demo-title">Text only</h3>
+                <ai-chat-text-input
+                  [placeholder]="'Wie kann ich dir heute helfen?'"
+                  (submitted)="onSubmitted($event)"
+                ></ai-chat-text-input>
+              </div>
+            </div>
+
+            <h3 class="ai-chat-input-docs__subtitle">Usage snippets</h3>
+            <pre class="ai-chat-input-docs__code"><code>{{ basicUsageSnippet }}</code></pre>
+            <pre class="ai-chat-input-docs__code"><code>{{ uploadUsageSnippet }}</code></pre>
+
+            <div class="ai-chat-input-docs__event-panel" aria-live="polite">
+              <h3 class="ai-chat-input-docs__subtitle">Event log</h3>
+              @if (eventLog().length === 0) {
+                <p class="ai-chat-input-docs__event-empty">No submit events yet. Send a message in any demo.</p>
+              } @else {
+                <ol class="ai-chat-input-docs__event-log">
+                  @for (entry of eventLog(); track entry) {
+                    <li>{{ entry }}</li>
+                  }
+                </ol>
+              }
+            </div>
+          </section>
+
+          <section class="ai-chat-input-docs__section" aria-labelledby="ai-chat-input-variants">
+            <h2 id="ai-chat-input-variants" class="ai-chat-input-docs__title">Styled variants previews</h2>
+            <p class="ai-chat-input-docs__lead">Preview-only examples with file-mode and token-based styling changes.</p>
+            <div class="ai-chat-input-docs__demo-grid">
+              <div class="ai-chat-input-docs__demo">
+                <h3 class="ai-chat-input-docs__demo-title">Single-file upload</h3>
+                <ai-chat-text-input
+                  [placeholder]="'Ask with one attachment'"
+                  [acceptFileFormats]="['.pdf', '.png', '.jpg']"
+                  [allowMultipleFiles]="false"
+                  (submitted)="onSubmitted($event)"
+                ></ai-chat-text-input>
+              </div>
+
+              <div class="ai-chat-input-docs__demo">
+                <h3 class="ai-chat-input-docs__demo-title">Multi-file upload</h3>
+                <ai-chat-text-input
+                  [placeholder]="'Ask with multiple files'"
+                  [acceptFileFormats]="['.pdf', '.png', '.jpg', '.txt']"
+                  [allowMultipleFiles]="true"
+                  (submitted)="onSubmitted($event)"
+                ></ai-chat-text-input>
+              </div>
+
+              <div class="ai-chat-input-docs__demo">
+                <h3 class="ai-chat-input-docs__demo-title">Warm style token variant</h3>
+                <ai-chat-text-input
+                  style="--ai-chat-text-input-bg:#fff8ed; --ai-chat-text-input-border:1px solid #f7c98a; --ai-chat-text-input-send-active-bg:#ea580c; --ai-chat-text-input-send-active-color:#ffffff;"
+                  [placeholder]="'Token-styled preview'"
+                  [allowMultipleFiles]="true"
+                  (submitted)="onSubmitted($event)"
+                ></ai-chat-text-input>
+              </div>
+            </div>
           </section>
 
           <section class="ai-chat-input-docs__section" aria-labelledby="ai-chat-input-tokens">
             <h2 id="ai-chat-input-tokens" class="ai-chat-input-docs__title">Style tokens playground</h2>
             <div class="ai-chat-input-docs__tokens-layout">
               <fieldset class="ai-chat-input-docs__token-fieldset">
-                <legend>Live token editor</legend>
+                <legend class="ai-chat-input-docs__subtitle">Live token editor</legend>
                 <div class="ai-chat-input-docs__token-grid">
                   @for (token of tokenControls; track token.key) {
                     <div class="ai-chat-input-docs__token-row">

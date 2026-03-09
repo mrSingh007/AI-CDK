@@ -1,0 +1,113 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/AI-Protocol Examples" />
+
+# AI-Protocol Examples
+
+## AG-UI protocol
+
+AG-UI is an open, lightweight, event-based protocol that standardizes how AI agents connect to user-facing applications.
+
+Install the AG-UI client package first:
+
+```bash
+npm install @ag-ui/client
+```
+
+Read more:
+
+- [AG-UI JS client overview](https://docs.ag-ui.com/sdk/js/client/overview)
+- [Pydantic AI AG-UI guide](https://ai.pydantic.dev/ui/ag-ui/)
+
+Minimal agent:
+
+```python
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4200", "http://localhost:4900"],
+    allow_methods=["POST", "OPTIONS"],
+    allow_headers=["Content-Type", "Accept"],
+)
+
+agent = Agent(
+    "openai:gpt-5.2",
+    instructions="You are a helpful assistant. Be concise in your responses.",
+)
+
+
+@app.post("/agent")
+async def run_agent(request: Request) -> Response:
+    return await AGUIAdapter.dispatch_request(
+        request,
+        agent=agent,
+    )
+```
+
+Minimal AG-UI frontend setup:
+
+```ts
+this.agent = new HttpAgent({
+  url: 'http://localhost:8000/agent',
+  threadId: 'main-thread',
+});
+
+await this.agent.runAgent({ tools: this.getToolSchemas() }, subscriber);
+
+//get tool data from SSE events and pass to renderRequest renderer input
+
+// Register AI CDK or any other components as tools.
+getToolSchemas() {
+  return [
+    {
+      name: 'human-feedback',
+      description: 'Render human-in-the-loop UI component to get feedback.',
+      parameter: {
+        type: 'object',
+        properties: {
+          text: { type: 'string', description: 'Text to present to the user' },
+          approveButtonText: { type: 'string', description: 'Text for approve button' },
+          cancelButtonText: { type: 'string', description: 'Text for rejection button' },
+        },
+        required: ['text'],
+      },
+    },
+  ];
+}
+
+// On tool call end, get tool data.
+registry = [
+  {
+    key: 'human-feedback',
+    component: 'AiHumanFeedbackComponent',
+    events: {
+      confirmed: 'onConfirmed',
+      rejected: 'onRejected',
+    },
+  },
+];
+
+eventHandlers = {
+  onConfirmed: () => alert('Confirmed'),
+  onRejected: () => alert('Rejected'),
+};
+```
+
+HTML:
+
+```html
+<!-- For each tool payload -->
+<ai-payload-renderer
+  [renderRequest]="toolData"
+  [registry]="registry"
+  [eventHandlers]="eventHandlers"
+/>
+```
+
+## Vercel-AI / AI-SDK
+
+After SSE setup, the same renderer can be used with the same `registry` and `eventHandlers`.
+
+- SSE setup reference: [Pydantic AI Vercel-AI guide](https://ai.pydantic.dev/ui/vercel-ai/)
+- Main protocol difference: tools are configured on the backend side in the Vercel-AI protocol.

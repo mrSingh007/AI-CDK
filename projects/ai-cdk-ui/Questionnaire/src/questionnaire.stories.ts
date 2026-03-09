@@ -291,26 +291,40 @@ export const Overview: Story = {
       template: `
         <style>
           .ai-questionnaire-docs {
+            font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
             display: grid;
             gap: 1rem;
-            color: #0f172a;
+            color: #10233f;
+            font-size: 0.95rem;
+            line-height: 1.55;
           }
 
           .ai-questionnaire-docs__section {
-            border: 1px solid #cbd5e1;
-            border-radius: 14px;
-            padding: 1rem;
-            background: #ffffff;
+            border: 1px solid #d5e2f3;
+            border-radius: 16px;
+            padding: 1.1rem;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
           }
 
           .ai-questionnaire-docs__title {
             margin: 0 0 0.5rem;
-            font-size: 1.12rem;
+            font-size: 1.24rem;
+            line-height: 1.3;
+            color: #0b1f3a;
+            letter-spacing: 0.01em;
+          }
+
+          .ai-questionnaire-docs__subtitle {
+            margin: 0 0 0.5rem;
+            font-size: 1.02rem;
+            line-height: 1.4;
+            color: #11365e;
           }
 
           .ai-questionnaire-docs__lead {
             margin: 0;
-            color: #334155;
+            color: #2a3f5e;
             line-height: 1.5;
           }
 
@@ -322,28 +336,36 @@ export const Overview: Story = {
           }
 
           .ai-questionnaire-docs__demo {
-            border: 1px dashed #cbd5e1;
-            border-radius: 10px;
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
             padding: 0.75rem;
-            background: #f8fafc;
+            background: #f3f8ff;
           }
 
           .ai-questionnaire-docs__demo-title {
             margin: 0 0 0.5rem;
             font-size: 0.9rem;
-            color: #334155;
+            color: #274a74;
+          }
+
+          .ai-questionnaire-docs__event-panel {
+            margin-top: 0.9rem;
+            border: 1px solid #cad9ed;
+            border-radius: 12px;
+            background: #f7fbff;
+            padding: 0.75rem;
           }
 
           .ai-questionnaire-docs__event-log {
             margin: 0;
             padding-left: 1.125rem;
-            color: #1e293b;
-            font: 500 0.8rem/1.4 'Menlo', 'Monaco', monospace;
+            color: #0f2746;
+            font: 500 0.8rem/1.45 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
           }
 
           .ai-questionnaire-docs__event-empty {
             margin: 0;
-            color: #475569;
+            color: #355174;
             font-size: 0.9rem;
           }
 
@@ -351,28 +373,30 @@ export const Overview: Story = {
             width: 100%;
             border-collapse: collapse;
             margin-top: 0.75rem;
+            font-size: 0.88rem;
           }
 
           .ai-questionnaire-docs__table th,
           .ai-questionnaire-docs__table td {
-            border: 1px solid #d1d5db;
-            padding: 0.625rem;
+            border: 1px solid #ccdaea;
+            padding: 0.6rem;
             text-align: left;
             vertical-align: top;
-            font-size: 0.9rem;
           }
 
           .ai-questionnaire-docs__table thead {
-            background: #f8fafc;
+            background: #edf5ff;
+            color: #0f355f;
           }
 
           .ai-questionnaire-docs__code {
-            margin: 0.65rem 0 0;
-            border-radius: 10px;
-            padding: 0.75rem;
-            background: #0f172a;
-            color: #e2e8f0;
-            font: 500 0.78rem/1.45 'Menlo', 'Monaco', monospace;
+            margin: 0;
+            border-radius: 12px;
+            border: 1px solid #22324b;
+            padding: 0.8rem 0.85rem;
+            background: #0f1a2c;
+            color: #d7e5ff;
+            font: 500 0.79rem/1.5 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
             overflow-x: auto;
           }
 
@@ -405,22 +429,23 @@ export const Overview: Story = {
             gap: 0.5rem;
             font-size: 0.88rem;
             font-weight: 600;
+            color: #143960;
           }
 
           .ai-questionnaire-docs__token-label code {
             padding: 0.125rem 0.375rem;
             border-radius: 6px;
-            background: #f1f5f9;
+            background: #e8f0fb;
             font-size: 0.75rem;
           }
 
           .ai-questionnaire-docs__token-input {
             min-height: 2.1rem;
             width: 100%;
-            border: 1px solid #94a3b8;
+            border: 1px solid #8ca8c8;
             border-radius: 8px;
             background: #ffffff;
-            color: #0f172a;
+            color: #0f2746;
             padding: 0.45rem 0.6rem;
           }
 
@@ -429,20 +454,20 @@ export const Overview: Story = {
           }
 
           .ai-questionnaire-docs__token-input:focus-visible {
-            outline: 2px solid #1d4ed8;
+            outline: 2px solid #0f4ea0;
             outline-offset: 2px;
           }
 
           .ai-questionnaire-docs__token-default {
             margin: 0;
-            color: #475569;
+            color: #355779;
             font-size: 0.78rem;
           }
 
           .ai-questionnaire-docs__token-preview {
-            border: 1px dashed #cbd5e1;
-            border-radius: 10px;
-            background: #f8fafc;
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
+            background: #f3f8ff;
             padding: 0.75rem;
           }
 
@@ -456,51 +481,11 @@ export const Overview: Story = {
         <article class="ai-questionnaire-docs" aria-label="AiQuestionnaireComponent single-page documentation">
           <section class="ai-questionnaire-docs__section" aria-labelledby="ai-questionnaire-intro">
             <h2 id="ai-questionnaire-intro" class="ai-questionnaire-docs__title">AiQuestionnaireComponent</h2>
-            <pre class="ai-questionnaire-docs__code"><code>import &#123;AiQuestionnaireComponent&#125; from '@ai-cdk/ui';</code></pre>
             <p class="ai-questionnaire-docs__lead">
               AiQuestionnaireComponent guides users through step-by-step question flows with single- or
               multi-select options, optional free-text input, and completion events.
             </p>
-          </section>
-
-          <section class="ai-questionnaire-docs__section" aria-labelledby="ai-questionnaire-functional">
-            <h2 id="ai-questionnaire-functional" class="ai-questionnaire-docs__title">Functional API showcase</h2>
-            <p class="ai-questionnaire-docs__lead">Default flow, multi-select flow, and output event logging.</p>
-
-            <div class="ai-questionnaire-docs__demo-grid">
-              <div class="ai-questionnaire-docs__demo">
-                <h3 class="ai-questionnaire-docs__demo-title">Default flow (allowInput=true)</h3>
-                <ai-questionnaire
-                  [questions]="defaultQuestions"
-                  [allowInput]="true"
-                  [multiSelect]="false"
-                  (answerSubmit)="onAnswerSubmit($event)"
-                  (completed)="onCompleted($event)"
-                ></ai-questionnaire>
-              </div>
-
-              <div class="ai-questionnaire-docs__demo">
-                <h3 class="ai-questionnaire-docs__demo-title">Multi-select without text input</h3>
-                <ai-questionnaire
-                  [questions]="multiSelectQuestions"
-                  [allowInput]="false"
-                  [multiSelect]="true"
-                  (answerSubmit)="onAnswerSubmit($event)"
-                  (completed)="onCompleted($event)"
-                ></ai-questionnaire>
-              </div>
-            </div>
-
-            <h3 class="ai-questionnaire-docs__title">Event log</h3>
-            @if (eventLog().length === 0) {
-              <p class="ai-questionnaire-docs__event-empty">No events yet. Answer a question to inspect emitted payloads.</p>
-            } @else {
-              <ol class="ai-questionnaire-docs__event-log">
-                @for (entry of eventLog(); track entry) {
-                  <li>{{ entry }}</li>
-                }
-              </ol>
-            }
+            <pre class="ai-questionnaire-docs__code"><code>import &#123; AiQuestionnaireComponent &#125; from '@ai-cdk/ui/Questionnaire';</code></pre>
           </section>
 
           <section class="ai-questionnaire-docs__section" aria-labelledby="ai-questionnaire-reference">
@@ -555,17 +540,76 @@ export const Overview: Story = {
             </table>
           </section>
 
-          <section class="ai-questionnaire-docs__section" aria-labelledby="ai-questionnaire-snippets">
-            <h2 id="ai-questionnaire-snippets" class="ai-questionnaire-docs__title">Usage snippets</h2>
-            <pre class="ai-questionnaire-docs__code">{{ basicUsageSnippet }}</pre>
-            <pre class="ai-questionnaire-docs__code">{{ tokenUsageSnippet }}</pre>
+          <section class="ai-questionnaire-docs__section" aria-labelledby="ai-questionnaire-default">
+            <h2 id="ai-questionnaire-default" class="ai-questionnaire-docs__title">Default showcase</h2>
+            <p class="ai-questionnaire-docs__lead">Default question flow with text input enabled.</p>
+
+            <div class="ai-questionnaire-docs__demo-grid">
+              <div class="ai-questionnaire-docs__demo">
+                <h3 class="ai-questionnaire-docs__demo-title">Default flow (allowInput=true)</h3>
+                <ai-questionnaire
+                  [questions]="defaultQuestions"
+                  [allowInput]="true"
+                  [multiSelect]="false"
+                  (answerSubmit)="onAnswerSubmit($event)"
+                  (completed)="onCompleted($event)"
+                ></ai-questionnaire>
+              </div>
+            </div>
+
+            <h3 class="ai-questionnaire-docs__subtitle">Usage snippets</h3>
+            <pre class="ai-questionnaire-docs__code"><code>{{ basicUsageSnippet }}</code></pre>
+            <pre class="ai-questionnaire-docs__code"><code>{{ tokenUsageSnippet }}</code></pre>
+
+            <div class="ai-questionnaire-docs__event-panel" aria-live="polite">
+              <h3 class="ai-questionnaire-docs__subtitle">Event log</h3>
+              @if (eventLog().length === 0) {
+                <p class="ai-questionnaire-docs__event-empty">No events yet. Answer a question to inspect emitted payloads.</p>
+              } @else {
+                <ol class="ai-questionnaire-docs__event-log">
+                  @for (entry of eventLog(); track entry) {
+                    <li>{{ entry }}</li>
+                  }
+                </ol>
+              }
+            </div>
+          </section>
+
+          <section class="ai-questionnaire-docs__section" aria-labelledby="ai-questionnaire-variants">
+            <h2 id="ai-questionnaire-variants" class="ai-questionnaire-docs__title">Styled variants previews</h2>
+            <p class="ai-questionnaire-docs__lead">Preview-only variants for multi-select and accent token styles.</p>
+
+            <div class="ai-questionnaire-docs__demo-grid">
+              <div class="ai-questionnaire-docs__demo">
+                <h3 class="ai-questionnaire-docs__demo-title">Multi-select without text input</h3>
+                <ai-questionnaire
+                  [questions]="multiSelectQuestions"
+                  [allowInput]="false"
+                  [multiSelect]="true"
+                  (answerSubmit)="onAnswerSubmit($event)"
+                  (completed)="onCompleted($event)"
+                ></ai-questionnaire>
+              </div>
+
+              <div class="ai-questionnaire-docs__demo">
+                <h3 class="ai-questionnaire-docs__demo-title">Accent token variant</h3>
+                <ai-questionnaire
+                  style="--ai-questionnaire-bg:#f8fbff; --ai-questionnaire-option-selected-bg:#2563eb; --ai-questionnaire-next-bg:#2563eb;"
+                  [questions]="defaultQuestions"
+                  [allowInput]="true"
+                  [multiSelect]="false"
+                  (answerSubmit)="onAnswerSubmit($event)"
+                  (completed)="onCompleted($event)"
+                ></ai-questionnaire>
+              </div>
+            </div>
           </section>
 
           <section class="ai-questionnaire-docs__section" aria-labelledby="ai-questionnaire-tokens">
             <h2 id="ai-questionnaire-tokens" class="ai-questionnaire-docs__title">Style tokens playground</h2>
             <div class="ai-questionnaire-docs__tokens-layout">
               <fieldset class="ai-questionnaire-docs__token-fieldset">
-                <legend>Live token editor</legend>
+                <legend class="ai-questionnaire-docs__subtitle">Live token editor</legend>
                 <div class="ai-questionnaire-docs__token-grid">
                   @for (token of tokenControls; track token.key) {
                     <div class="ai-questionnaire-docs__token-row">

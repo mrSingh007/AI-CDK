@@ -20,6 +20,13 @@ interface AiCardTokenControl {
   readonly defaultValue: string;
 }
 
+interface AiCardStyledVariantPreview {
+  readonly name: string;
+  readonly description: string;
+  readonly tokenStyle: string;
+  readonly clickable: boolean;
+}
+
 const CARD_TOKEN_DEFAULTS: AiCardTokens = {
   cardBg: '#ffffff',
   cardBorder: '1px solid #e5e7eb',
@@ -82,17 +89,40 @@ const CARD_TOKEN_CONTROLS: readonly AiCardTokenControl[] = [
   },
 ];
 
-const BASIC_USAGE_SNIPPET = `<ai-card [clickable]="false">
-  <h3 slot="header">Card Header</h3>
+const CARD_STYLED_VARIANT_PREVIEWS: readonly AiCardStyledVariantPreview[] = [
+  {
+    name: 'Elevated accent',
+    description: 'Use for highlighted summaries and key actions.',
+    tokenStyle:
+      '--ai-card-bg: #f8fbff; --ai-card-border: 1px solid #93c5fd; --ai-card-color: #0f172a; --ai-card-shadow: 0 10px 24px rgba(37, 99, 235, 0.14); --ai-card-hover-shadow: 0 14px 28px rgba(37, 99, 235, 0.2);',
+    clickable: true,
+  },
+  {
+    name: 'Subtle neutral',
+    description: 'Use for low-priority context blocks.',
+    tokenStyle:
+      '--ai-card-bg: #f8fafc; --ai-card-border: 1px solid #dbe3ee; --ai-card-color: #1e293b; --ai-card-shadow: 0 4px 12px rgba(15, 23, 42, 0.06); --ai-card-hover-shadow: 0 6px 16px rgba(15, 23, 42, 0.1);',
+    clickable: false,
+  },
+  {
+    name: 'Warm callout',
+    description: 'Use for alerts, onboarding tips, and guidance.',
+    tokenStyle:
+      '--ai-card-bg: #fff8ed; --ai-card-border: 1px solid #f7c98a; --ai-card-color: #7c2d12; --ai-card-shadow: 0 8px 20px rgba(234, 88, 12, 0.14); --ai-card-hover-shadow: 0 10px 24px rgba(234, 88, 12, 0.2);',
+    clickable: false,
+  },
+];
+
+const DEFAULT_USAGE_SNIPPET = `<ai-card>
+  <h3 slot="header">Card header</h3>
   <p>Main card body content.</p>
   <small slot="footer">Footer area</small>
 </ai-card>`;
 
-const TOKEN_USAGE_SNIPPET = `<ai-card
-  style="--ai-card-bg: #fff7ed; --ai-card-border-radius: 16px; --ai-card-color: #9a3412;"
->
-  <h3 slot="header">Token override</h3>
-  <p>Set CSS custom properties directly on the component host.</p>
+const CLICKABLE_USAGE_SNIPPET = `<ai-card [clickable]="true" (cardClick)="onCardActivated($event)">
+  <strong slot="header">Interactive card</strong>
+  <p>Supports click + keyboard activation (Enter/Space).</p>
+  <small slot="footer">Output: cardClick(MouseEvent)</small>
 </ai-card>`;
 
 function buildCardTokenStyles(tokens: AiCardTokens): string {
@@ -138,11 +168,12 @@ export const Overview: Story = {
     return {
       props: {
         tokenControls: CARD_TOKEN_CONTROLS,
+        styledVariantPreviews: CARD_STYLED_VARIANT_PREVIEWS,
         tokenValues,
         tokenStyles,
         cardEventLog,
-        basicUsageSnippet: BASIC_USAGE_SNIPPET,
-        tokenUsageSnippet: TOKEN_USAGE_SNIPPET,
+        defaultUsageSnippet: DEFAULT_USAGE_SNIPPET,
+        clickableUsageSnippet: CLICKABLE_USAGE_SNIPPET,
         onCardActivated,
         onTokenInputEvent: (key: keyof AiCardTokens, event: Event): void => {
           const target = event.target;
@@ -159,47 +190,94 @@ export const Overview: Story = {
       template: `
         <style>
           .ai-card-docs {
+            font-family: 'Manrope', 'Avenir Next', 'Segoe UI', sans-serif;
             display: grid;
             gap: 1rem;
-            color: #0f172a;
+            color: #10233f;
+            font-size: 0.95rem;
+            line-height: 1.55;
           }
 
           .ai-card-docs__section {
-            border: 1px solid #cbd5e1;
-            border-radius: 14px;
-            padding: 1rem;
-            background: #ffffff;
+            border: 1px solid #d5e2f3;
+            border-radius: 16px;
+            padding: 1.1rem;
+            background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
           }
 
           .ai-card-docs__title {
             margin: 0 0 0.5rem;
-            font-size: 1.15rem;
+            font-size: 1.24rem;
             line-height: 1.3;
+            color: #0b1f3a;
+            letter-spacing: 0.01em;
+          }
+
+          .ai-card-docs__subtitle {
+            margin: 0 0 0.5rem;
+            font-size: 1.02rem;
+            line-height: 1.4;
+            color: #11365e;
           }
 
           .ai-card-docs__lead {
             margin: 0;
-            color: #334155;
+            color: #2a3f5e;
             line-height: 1.5;
           }
 
-          .ai-card-docs__variant-grid {
+          .ai-card-docs__default-layout {
+            margin-top: 0.95rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: minmax(280px, 1.15fr) minmax(280px, 1fr);
+            gap: 1rem;
+          }
+
+          .ai-card-docs__preview-stack {
+            display: grid;
             gap: 0.75rem;
-            margin-top: 0.875rem;
+          }
+
+          .ai-card-docs__preview-panel {
+            border: 1px dashed #b9cbe3;
+            border-radius: 12px;
+            padding: 0.75rem;
+            background: #f3f8ff;
+          }
+
+          .ai-card-docs__preview-label {
+            margin: 0 0 0.5rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #274a74;
+          }
+
+          .ai-card-docs__code-stack {
+            display: grid;
+            gap: 0.75rem;
+          }
+
+          .ai-card-docs__event-panel {
+            margin-top: 0.9rem;
+            border: 1px solid #cad9ed;
+            border-radius: 12px;
+            background: #f7fbff;
+            padding: 0.75rem;
           }
 
           .ai-card-docs__event-log {
             margin: 0;
             padding-left: 1.125rem;
-            color: #1e293b;
-            font: 500 0.82rem/1.45 'Menlo', 'Monaco', monospace;
+            color: #0f2746;
+            font: 500 0.82rem/1.45 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
           }
 
           .ai-card-docs__event-empty {
             margin: 0;
-            color: #475569;
+            color: #355174;
             font-size: 0.9rem;
           }
 
@@ -207,34 +285,75 @@ export const Overview: Story = {
             width: 100%;
             border-collapse: collapse;
             margin-top: 0.75rem;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
           }
 
           .ai-card-docs__table th,
           .ai-card-docs__table td {
-            border: 1px solid #d1d5db;
-            padding: 0.625rem;
+            border: 1px solid #ccdaea;
+            padding: 0.6rem;
             text-align: left;
             vertical-align: top;
           }
 
           .ai-card-docs__table thead {
-            background: #f8fafc;
+            background: #edf5ff;
+            color: #0f355f;
+          }
+
+          .ai-card-docs__notes {
+            margin: 0.75rem 0 0;
+            padding-left: 1.1rem;
+            color: #274667;
+          }
+
+          .ai-card-docs__notes li + li {
+            margin-top: 0.3rem;
           }
 
           .ai-card-docs__code {
-            margin: 0.65rem 0 0;
-            border-radius: 10px;
-            padding: 0.75rem;
+            margin: 0;
+            border-radius: 12px;
+            border: 1px solid #22324b;
+            padding: 0.8rem 0.85rem;
             overflow-x: auto;
-            background: #0f172a;
-            color: #e2e8f0;
-            font: 500 0.78rem/1.45 'Menlo', 'Monaco', monospace;
+            background: #0f1a2c;
+            color: #d7e5ff;
+            font: 500 0.79rem/1.5 'JetBrains Mono', 'SFMono-Regular', 'Menlo', monospace;
+          }
+
+          .ai-card-docs__variant-grid {
+            margin-top: 0.9rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 0.75rem;
+          }
+
+          .ai-card-docs__variant-card {
+            border: 1px solid #d4e2f4;
+            border-radius: 12px;
+            padding: 0.75rem;
+            background: #f8fbff;
+            display: grid;
+            gap: 0.5rem;
+          }
+
+          .ai-card-docs__variant-name {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #103a69;
+          }
+
+          .ai-card-docs__variant-description {
+            margin: 0;
+            color: #355a80;
+            font-size: 0.82rem;
           }
 
           .ai-card-docs__tokens-layout {
             display: grid;
-            grid-template-columns: minmax(320px, 1fr) minmax(260px, 1fr);
+            grid-template-columns: minmax(320px, 1fr) minmax(260px, 0.95fr);
             gap: 1rem;
             align-items: start;
           }
@@ -250,11 +369,12 @@ export const Overview: Story = {
             margin: 0 0 0.25rem;
             font-size: 1rem;
             font-weight: 700;
+            color: #0d2f53;
           }
 
           .ai-card-docs__token-help {
             margin: 0 0 0.75rem;
-            color: #334155;
+            color: #2f4f75;
             font-size: 0.9rem;
           }
 
@@ -275,11 +395,11 @@ export const Overview: Story = {
             gap: 0.5rem;
             font-size: 0.88rem;
             font-weight: 600;
-            color: #0f172a;
+            color: #143960;
           }
 
           .ai-card-docs__token-label code {
-            background: #f1f5f9;
+            background: #e8f0fb;
             padding: 0.125rem 0.375rem;
             border-radius: 6px;
             font-size: 0.75rem;
@@ -288,10 +408,10 @@ export const Overview: Story = {
           .ai-card-docs__token-input {
             width: 100%;
             min-height: 2.15rem;
-            border: 1px solid #94a3b8;
+            border: 1px solid #8ca8c8;
             border-radius: 8px;
             background: #ffffff;
-            color: #0f172a;
+            color: #0f2746;
             padding: 0.45rem 0.6rem;
             font-size: 0.88rem;
           }
@@ -301,13 +421,13 @@ export const Overview: Story = {
           }
 
           .ai-card-docs__token-input:focus-visible {
-            outline: 2px solid #1d4ed8;
+            outline: 2px solid #0f4ea0;
             outline-offset: 2px;
           }
 
           .ai-card-docs__token-default {
             margin: 0;
-            color: #475569;
+            color: #355779;
             font-size: 0.78rem;
           }
 
@@ -318,8 +438,8 @@ export const Overview: Story = {
 
           .ai-card-docs__token-preview-title {
             margin: 0;
-            font-size: 0.92rem;
-            color: #0f172a;
+            font-size: 0.95rem;
+            color: #12385f;
           }
 
           .ai-card-docs__sr-only {
@@ -334,6 +454,12 @@ export const Overview: Story = {
             border: 0;
           }
 
+          @media (max-width: 980px) {
+            .ai-card-docs__default-layout {
+              grid-template-columns: 1fr;
+            }
+          }
+
           @media (max-width: 920px) {
             .ai-card-docs__tokens-layout {
               grid-template-columns: 1fr;
@@ -344,41 +470,15 @@ export const Overview: Story = {
         <article class="ai-card-docs" aria-label="AiCardComponent single-page documentation">
           <section class="ai-card-docs__section" aria-labelledby="ai-card-docs-intro">
             <h2 id="ai-card-docs-intro" class="ai-card-docs__title">AiCardComponent</h2>
-            <pre class="ai-card-docs__code"><code>import &#123;AiCardComponent&#125; from '@ai-cdk/ui';</code></pre>
             <p class="ai-card-docs__lead">
-              AiCardComponent is a reusable surface for grouped content such as summaries, references,
-              or inline actions in AI chat interfaces. This page combines API reference, behavior demos,
-              and design token customization in one place.
+              Reusable content surface for grouped information, inline actions, and contextual messaging.
             </p>
-          </section>
-
-          <section class="ai-card-docs__section" aria-labelledby="ai-card-docs-functional">
-            <h2 id="ai-card-docs-functional" class="ai-card-docs__title">Functional API showcase</h2>
-            <p class="ai-card-docs__lead">The clickable variant supports pointer and keyboard activation (Enter / Space).
-            </p>
-
-            <div class="ai-card-docs__variant-grid">
-              <ai-card [clickable]="true" (cardClick)="onCardActivated($event)">
-                <strong slot="header">Clickable card</strong>
-                <p>Click this card or focus it and press Enter/Space.</p>
-                <small slot="footer">Output: cardClick(MouseEvent)</small>
-              </ai-card>
-            </div>
-
-            <h3 class="ai-card-docs__title">Event log</h3>
-            @if (cardEventLog().length === 0) {
-              <p class="ai-card-docs__event-empty">No events yet. Activate the clickable card to inspect emitted output.</p>
-            } @else {
-              <ol class="ai-card-docs__event-log">
-                @for (entry of cardEventLog(); track entry) {
-                  <li>{{ entry }}</li>
-                }
-              </ol>
-            }
+            <pre class="ai-card-docs__code"><code>import &#123; AiCardComponent &#125; from '@ai-cdk/ui/Card';</code></pre>
           </section>
 
           <section class="ai-card-docs__section" aria-labelledby="ai-card-docs-reference">
             <h2 id="ai-card-docs-reference" class="ai-card-docs__title">Technical reference</h2>
+            <h3 class="ai-card-docs__subtitle">Public API</h3>
             <table class="ai-card-docs__table">
               <caption class="ai-card-docs__sr-only">AiCardComponent public API</caption>
               <thead>
@@ -396,24 +496,120 @@ export const Overview: Story = {
                   <td><code>clickable</code></td>
                   <td><code>boolean</code></td>
                   <td><code>false</code></td>
-                  <td>Enables interactive behavior and keyboard activation semantics.</td>
+                  <td>Enables interactive semantics including keyboard activation.</td>
                 </tr>
                 <tr>
                   <td>Output</td>
                   <td><code>cardClick</code></td>
                   <td><code>MouseEvent</code></td>
                   <td>n/a</td>
-                  <td>Emitted when a clickable card is activated by click, Enter, or Space.</td>
+                  <td>Emitted on click, Enter, or Space while <code>clickable</code> is true.</td>
                 </tr>
               </tbody>
             </table>
+
+            <h3 class="ai-card-docs__subtitle">Style tokens</h3>
+            <table class="ai-card-docs__table">
+              <caption class="ai-card-docs__sr-only">AiCardComponent style tokens</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Token</th>
+                  <th scope="col">CSS variable</th>
+                  <th scope="col">Default</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (token of tokenControls; track token.key) {
+                  <tr>
+                    <td>{{ token.label }}</td>
+                    <td><code>{{ token.cssVar }}</code></td>
+                    <td><code>{{ token.defaultValue }}</code></td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+
+            <ul class="ai-card-docs__notes">
+              <li>Supports content projection slots: <code>header</code>, default body slot, and <code>footer</code>.</li>
+              <li>Keyboard support for interactive cards: Enter and Space trigger <code>cardClick</code>.</li>
+              <li>Visual customization uses CSS custom properties (tokens), not style-specific component inputs.</li>
+            </ul>
           </section>
 
-          <section class="ai-card-docs__section" aria-labelledby="ai-card-docs-usage">
-            <h2 id="ai-card-docs-usage" class="ai-card-docs__title">Usage snippets</h2>
-            <p class="ai-card-docs__lead">Use projection slots for header and footer. Override styles via CSS custom properties.</p>
-            <pre class="ai-card-docs__code">{{ basicUsageSnippet }}</pre>
-            <pre class="ai-card-docs__code">{{ tokenUsageSnippet }}</pre>
+          <section class="ai-card-docs__section" aria-labelledby="ai-card-docs-default">
+            <h2 id="ai-card-docs-default" class="ai-card-docs__title">Default showcase</h2>
+            <p class="ai-card-docs__lead">
+              Unmodified default appearance with base behavior and usage snippets.
+            </p>
+
+            <div class="ai-card-docs__default-layout">
+              <div class="ai-card-docs__preview-stack">
+                <h3 class="ai-card-docs__subtitle">Preview</h3>
+
+                <div class="ai-card-docs__preview-panel">
+                  <p class="ai-card-docs__preview-label">Static card</p>
+                  <ai-card>
+                    <strong slot="header">Card header</strong>
+                    <p>Base card with slots and default tokens.</p>
+                    <small slot="footer">Non-interactive surface</small>
+                  </ai-card>
+                </div>
+
+                <div class="ai-card-docs__preview-panel">
+                  <p class="ai-card-docs__preview-label">Interactive card</p>
+                  <ai-card [clickable]="true" (cardClick)="onCardActivated($event)">
+                    <strong slot="header">Clickable card</strong>
+                    <p>Click or press Enter/Space while focused.</p>
+                    <small slot="footer">Output: cardClick(MouseEvent)</small>
+                  </ai-card>
+                </div>
+              </div>
+
+              <div class="ai-card-docs__code-stack">
+                <h3 class="ai-card-docs__subtitle">Usage snippets</h3>
+                <pre class="ai-card-docs__code"><code>{{ defaultUsageSnippet }}</code></pre>
+                <pre class="ai-card-docs__code"><code>{{ clickableUsageSnippet }}</code></pre>
+              </div>
+            </div>
+
+            <div class="ai-card-docs__event-panel" aria-live="polite">
+              <h3 class="ai-card-docs__subtitle">Event log</h3>
+              @if (cardEventLog().length === 0) {
+                <p class="ai-card-docs__event-empty">No events yet. Activate the interactive card to inspect emitted payloads.</p>
+              } @else {
+                <ol class="ai-card-docs__event-log">
+                  @for (entry of cardEventLog(); track entry) {
+                    <li>{{ entry }}</li>
+                  }
+                </ol>
+              }
+            </div>
+          </section>
+
+          <section class="ai-card-docs__section" aria-labelledby="ai-card-docs-variants">
+            <h2 id="ai-card-docs-variants" class="ai-card-docs__title">Styled variants previews</h2>
+            <p class="ai-card-docs__lead">
+              Preview-only examples that combine token overrides with clickable/non-clickable variants.
+            </p>
+            <div class="ai-card-docs__variant-grid">
+              @for (variant of styledVariantPreviews; track variant.name) {
+                <div class="ai-card-docs__variant-card">
+                  <p class="ai-card-docs__variant-name">{{ variant.name }}</p>
+                  <p class="ai-card-docs__variant-description">{{ variant.description }}</p>
+                  <ai-card
+                    [style]="variant.tokenStyle"
+                    [clickable]="variant.clickable"
+                    (cardClick)="onCardActivated($event)"
+                  >
+                    <strong slot="header">{{ variant.name }}</strong>
+                    <p>{{ variant.description }}</p>
+                    <small slot="footer">
+                      Variant: {{ variant.clickable ? 'interactive' : 'static' }}
+                    </small>
+                  </ai-card>
+                </div>
+              }
+            </div>
           </section>
 
           <section class="ai-card-docs__section" aria-labelledby="ai-card-docs-tokens">

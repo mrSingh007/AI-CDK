@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Installation" />
+
+# Getting Started
+
+This guide will help you get started with building AI apps using the `@ai-cdk/*` packages.
+
+## Prerequisites
+
+- Angular `>= 21`
+- Node `>= 22`
+
+## Installation
+
+```bash
+npm install @ai-cdk/ui@latest
+```
+
+## Quick Start
+
+Create a simple component using `AiCardComponent`.
+
+```ts
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AiCardComponent } from '@ai-cdk/ui';
+
+@Component({
+  selector: 'app-root',
+  imports: [AiCardComponent],
+  templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class AppComponent {
+  onCardClick(event: MouseEvent): void {
+    console.log('Card clicked', event);
+  }
+}
+```
+
+```html
+<ai-card [clickable]="true" (cardClick)="onCardClick($event)">
+  <h3 slot="header">Quick Start Card</h3>
+  <p>Main card body content.</p>
+  <small slot="footer">Footer area</small>
+</ai-card>
+```

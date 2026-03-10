@@ -571,6 +571,7 @@ export const Overview: Story = {
             <p class="ai-sidebar-docs__lead">
               AiSidebarComponent provides a chat sidebar shell with message history, input bar, and streaming
               response handling through server-sent events.
+              This component is in WIP
             </p>
           </section>
 

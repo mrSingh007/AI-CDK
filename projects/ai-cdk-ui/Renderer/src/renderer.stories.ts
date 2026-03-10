@@ -480,7 +480,8 @@ export const Overview: Story = {
             <h2 id="ai-payload-intro" class="ai-payload-docs__title">AiPayloadRendererComponent</h2>
             <p class="ai-payload-docs__lead">
               AiPayloadRendererComponent resolves protocol payloads to registered components and bridges
-              outputs, callback inputs, native click events, and CVA-style ngModel updates.
+              outputs, callback inputs, native click events, and CVA-style ngModel updates. 
+              Not only ai-cdk components but any other angular components can be used with this renderer.
             </p>
             <pre class="ai-payload-docs__code"><code>import &#123; AiPayloadRendererComponent &#125; from '@ai-cdk/ui/Renderer';</code></pre>
           </section>
@@ -582,8 +583,10 @@ export const Overview: Story = {
           </section>
 
           <section class="ai-payload-docs__section" aria-labelledby="ai-payload-variants">
-            <h2 id="ai-payload-variants" class="ai-payload-docs__title">Styled variants previews</h2>
-            <p class="ai-payload-docs__lead">Preview-only payload variants rendered through the same dynamic host.</p>
+            <h2 id="ai-payload-variants" class="ai-payload-docs__title">Examples</h2>
+            <p class="ai-payload-docs__lead">
+            Preview-only payload variants rendered through the same dynamic host.
+            </p>
 
             <div class="ai-payload-docs__layout">
               <aside aria-label="Payload catalog">

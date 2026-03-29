@@ -35,7 +35,6 @@ Current component feature docs live at:
 - `projects/ai-cdk-ui/Skeleton/feature.md`
 - `projects/ai-cdk-ui/Spinner/feature.md`
 - `projects/ai-cdk-ui/Questionnaire/feature.md`
-- `projects/ai-cdk-chat/SideBar/feature.md`
 
 ## Coding and Quality Expectations
 - Follow Angular and TypeScript best practices defined in repository guidance.

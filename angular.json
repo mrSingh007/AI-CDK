@@ -40,20 +40,20 @@
         }
       }
     },
-    "ai-cdk-chat": {
+    "ai-cdk-ag-ui": {
       "projectType": "library",
-      "root": "projects/ai-cdk-chat",
-      "sourceRoot": "projects/ai-cdk-chat/src",
+      "root": "projects/ai-cdk-ag-ui",
+      "sourceRoot": "projects/ai-cdk-ag-ui",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
           "configurations": {
             "production": {
-              "tsConfig": "projects/ai-cdk-chat/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ai-cdk-ag-ui/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ai-cdk-chat/tsconfig.lib.json"
+              "tsConfig": "projects/ai-cdk-ag-ui/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -61,14 +61,17 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/ai-cdk-chat/tsconfig.spec.json"
+            "tsConfig": "projects/ai-cdk-ag-ui/tsconfig.spec.json"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["projects/ai-cdk-chat/**/*.ts", "projects/ai-cdk-chat/**/*.html"],
-            "eslintConfig": "projects/ai-cdk-chat/eslint.config.js"
+            "lintFilePatterns": [
+              "projects/ai-cdk-ag-ui/**/*.ts",
+              "projects/ai-cdk-ag-ui/**/*.html"
+            ],
+            "eslintConfig": "projects/ai-cdk-ag-ui/eslint.config.js"
           }
         }
       }
@@ -94,6 +97,18 @@
             },
             "development": {
               "optimization": false
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "storybook-host:build:production"
+            },
+            "development": {
+              "buildTarget": "storybook-host:build:development"
             }
           },
           "defaultConfiguration": "development"

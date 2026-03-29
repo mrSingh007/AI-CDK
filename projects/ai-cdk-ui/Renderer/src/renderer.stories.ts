@@ -99,7 +99,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'Card payload with named slots',
     description: 'Projects header/body/footer content into AiCardComponent.',
     renderRequest: {
-      component: 'card',
+      name: 'card',
       props: {
         clickable: true,
       },
@@ -115,7 +115,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'Output() events payload',
     description: 'Passes complex props into AiQuestionnaireComponent and handles outputs.',
     renderRequest: {
-      component: 'questionnaire',
+      name: 'questionnaire',
       props: {
         questions: QUESTIONNAIRE_ITEMS,
         allowInput: true,
@@ -128,7 +128,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'Human feedback payload',
     description: 'Renders approval controls and maps confirmed/rejected outputs.',
     renderRequest: {
-      component: 'humanFeedback',
+      name: 'humanFeedback',
       props: {
         text: 'Should we execute deployment plan?',
         approveButtonText: 'Approve',
@@ -141,7 +141,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'Callback input bridge payload',
     description: 'Maps events.onAction to callback-style input on a dynamic component.',
     renderRequest: {
-      component: 'callbackInput',
+      name: 'callbackInput',
       props: {
         buttonText: 'Emit lorem callback payload',
         summary: 'Click to call input callback bound by AiPayloadRendererComponent.',
@@ -153,7 +153,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'Native host click payload',
     description: 'Uses reserved events.click to subscribe to host native click events.',
     renderRequest: {
-      component: 'nativeClick',
+      name: 'nativeClick',
       props: {
         label: 'Any click inside this component bubbles to the host listener.',
       },
@@ -164,7 +164,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'ControlValueAccessor bridge payload',
     description: 'Bridges ngModel and ngModelChange using CVA-style methods.',
     renderRequest: {
-      component: 'modelBridge',
+      name: 'modelBridge',
       props: {
         label: 'Renderer sets writeValue via ngModel then listens to ngModelChange.',
         ngModel: 'initial payload model',

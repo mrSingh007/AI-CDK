@@ -1,6 +1,8 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/ai-cdk-chat",
+  "dest": "../../dist/ai-cdk-ag-ui",
+  "assets": ["README.md"],
+  "allowedNonPeerDependencies": ["@ag-ui/client"],
   "lib": {
     "entryFile": "src/public-api.ts"
   }

@@ -96,6 +96,17 @@ export class AiQuestionnaireComponent {
     return this.allowInput() || this.currentMultiSelect();
   });
   readonly singleSelectWithInput = computed(() => this.allowInput() && !this.currentMultiSelect());
+  readonly canSubmitCurrentAnswer = computed(() => {
+    if (!this.currentQuestion()) {
+      return false;
+    }
+
+    return this.selectedOptions().length > 0 || this.freeText().trim().length > 0;
+  });
+  readonly isFinalQuestion = computed(() => {
+    const questionCount = this.questions().length;
+    return questionCount > 0 && this.currentIndex() === questionCount - 1;
+  });
 
   constructor() {
     effect(() => {
@@ -203,7 +214,7 @@ export class AiQuestionnaireComponent {
    */
   submitCurrentAnswer(): void {
     const question = this.currentQuestion();
-    if (!question) {
+    if (!question || !this.canSubmitCurrentAnswer()) {
       return;
     }
 

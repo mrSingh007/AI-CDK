@@ -7,4 +7,5 @@
 //   @ai-cdk/ui/HumanFeedback
 //   @ai-cdk/ui/Renderer
 //   @ai-cdk/ui/ChatTextInput
+//   @ai-cdk/ui/Markdown
 export {};

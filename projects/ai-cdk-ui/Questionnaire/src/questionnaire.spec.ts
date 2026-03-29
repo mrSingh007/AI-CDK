@@ -116,4 +116,36 @@ describe('AiQuestionnaireComponent', () => {
 
     expect(fixture.componentInstance.selectedOptions()).toEqual(['Design']);
   });
+
+  it('blocks empty submissions and disables the action button until there is an answer', () => {
+    const fixture = TestBed.createComponent(AiQuestionnaireComponent);
+    fixture.componentRef.setInput('questions', SINGLE_SELECT_WITH_INPUT_QUESTION);
+    fixture.componentRef.setInput('allowInput', true);
+    fixture.componentRef.setInput('multiSelect', false);
+    fixture.detectChanges();
+
+    const submittedSpy = vi.fn<(answer: AiAnswer) => void>();
+    fixture.componentInstance.answerSubmit.subscribe(submittedSpy);
+
+    const nextButton = fixture.nativeElement.querySelector(
+      '.ai-questionnaire__next',
+    ) as HTMLButtonElement;
+
+    expect(nextButton.disabled).toBe(true);
+
+    fixture.componentInstance.submitCurrentAnswer();
+    fixture.detectChanges();
+
+    expect(submittedSpy).not.toHaveBeenCalled();
+
+    const inputElement = fixture.nativeElement.querySelector(
+      '.ai-questionnaire__input',
+    ) as HTMLInputElement;
+    inputElement.value = 'Needs accessibility';
+    inputElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(nextButton.disabled).toBe(false);
+    expect(nextButton.textContent?.trim()).toBe('Finish');
+  });
 });

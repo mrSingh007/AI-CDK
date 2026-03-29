@@ -60,6 +60,9 @@ export class AiCardComponent {
     }
 
     event.preventDefault();
-    this.cardClick.emit(new MouseEvent('click'));
+    const target = event.currentTarget;
+    if (target instanceof HTMLElement) {
+      target.click();
+    }
   }
 }

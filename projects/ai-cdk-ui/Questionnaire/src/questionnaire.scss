@@ -115,3 +115,13 @@ $ai-questionnaire-next-padding: var(--ai-questionnaire-next-padding, 0.5rem 1rem
 .ai-questionnaire__next:focus-visible {
   background: #1d4ed8;
 }
+
+.ai-questionnaire__next:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ai-questionnaire__next:disabled:hover,
+.ai-questionnaire__next:disabled:focus-visible {
+  background: $ai-questionnaire-next-bg;
+}

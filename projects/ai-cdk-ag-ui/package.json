@@ -1,0 +1,16 @@
+{
+  "name": "@ai-cdk/ag-ui",
+  "version": "0.0.1",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "ag-ui",
+    "sse",
+    "agent",
+    "ai-cdk"
+  ],
+  "peerDependencies": {
+    "@ag-ui/client": "^0.0.48"
+  },
+  "sideEffects": false
+}

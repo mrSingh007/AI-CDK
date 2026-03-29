@@ -1,0 +1,122 @@
+$ai-markdown-color: var(--ai-markdown-color, #0f172a);
+$ai-markdown-font-size: var(--ai-markdown-font-size, 0.95rem);
+$ai-markdown-line-height: var(--ai-markdown-line-height, 1.6);
+$ai-markdown-link-color: var(--ai-markdown-link-color, #1d4ed8);
+$ai-markdown-link-hover-color: var(--ai-markdown-link-hover-color, #1e40af);
+$ai-markdown-focus-color: var(--ai-markdown-focus-color, #1d4ed8);
+$ai-markdown-heading-color: var(--ai-markdown-heading-color, #0f172a);
+$ai-markdown-code-color: var(--ai-markdown-code-color, #111827);
+$ai-markdown-code-bg: var(--ai-markdown-code-bg, #e2e8f0);
+$ai-markdown-pre-color: var(--ai-markdown-pre-color, #e2e8f0);
+$ai-markdown-pre-bg: var(--ai-markdown-pre-bg, #0f172a);
+$ai-markdown-blockquote-color: var(--ai-markdown-blockquote-color, #334155);
+$ai-markdown-blockquote-border: var(--ai-markdown-blockquote-border, #94a3b8);
+$ai-markdown-table-border: var(--ai-markdown-table-border, #cbd5e1);
+$ai-markdown-table-header-bg: var(--ai-markdown-table-header-bg, #f1f5f9);
+
+:host {
+  display: block;
+}
+
+.ai-markdown {
+  color: $ai-markdown-color;
+  font-size: $ai-markdown-font-size;
+  line-height: $ai-markdown-line-height;
+  overflow-wrap: anywhere;
+}
+
+.ai-markdown :where(h1, h2, h3, h4, h5, h6) {
+  color: $ai-markdown-heading-color;
+  line-height: 1.3;
+  margin: 0 0 0.65rem;
+}
+
+.ai-markdown :where(h1) {
+  font-size: 1.35em;
+}
+
+.ai-markdown :where(h2) {
+  font-size: 1.2em;
+}
+
+.ai-markdown :where(h3) {
+  font-size: 1.1em;
+}
+
+.ai-markdown :where(p, ul, ol, pre, blockquote, table) {
+  margin: 0 0 0.75rem;
+}
+
+.ai-markdown :where(ul, ol) {
+  padding-inline-start: 1.3rem;
+}
+
+.ai-markdown :where(li + li) {
+  margin-top: 0.25rem;
+}
+
+.ai-markdown :where(a) {
+  color: $ai-markdown-link-color;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+
+.ai-markdown :where(a:hover) {
+  color: $ai-markdown-link-hover-color;
+}
+
+.ai-markdown :where(a:focus-visible) {
+  outline: 2px solid $ai-markdown-focus-color;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.ai-markdown :where(code) {
+  color: $ai-markdown-code-color;
+  background: $ai-markdown-code-bg;
+  border-radius: 6px;
+  padding: 0.12rem 0.35rem;
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88em;
+}
+
+.ai-markdown :where(pre) {
+  background: $ai-markdown-pre-bg;
+  color: $ai-markdown-pre-color;
+  border-radius: 10px;
+  padding: 0.75rem;
+  overflow-x: auto;
+}
+
+.ai-markdown :where(pre code) {
+  color: inherit;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+.ai-markdown :where(blockquote) {
+  border-inline-start: 3px solid $ai-markdown-blockquote-border;
+  color: $ai-markdown-blockquote-color;
+  padding-inline-start: 0.75rem;
+}
+
+.ai-markdown :where(table) {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.ai-markdown :where(th, td) {
+  border: 1px solid $ai-markdown-table-border;
+  padding: 0.45rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ai-markdown :where(thead) {
+  background: $ai-markdown-table-header-bg;
+}
+
+.ai-markdown :where(*:last-child) {
+  margin-bottom: 0;
+}

@@ -166,6 +166,22 @@ describe('AiChatTextInputComponent', () => {
     expect(fileInput.getAttribute('accept')).toBe('.png,.jpg');
   });
 
+  it('applies the configured accessible textarea label', () => {
+    const fixture = TestBed.createComponent(AiChatTextInputComponent);
+    fixture.componentRef.setInput('textareaAriaLabel', 'Nachricht verfassen');
+    fixture.detectChanges();
+
+    const textarea = fixture.nativeElement.querySelector(
+      '.ai-chat-text-input__textarea',
+    ) as HTMLTextAreaElement;
+    const label = fixture.nativeElement.querySelector(
+      '.ai-chat-text-input__sr-only',
+    ) as HTMLLabelElement;
+
+    expect(label.textContent?.trim()).toBe('Nachricht verfassen');
+    expect(label.htmlFor).toBe(textarea.id);
+  });
+
   it('accepts all file types when acceptFileFormats contains wildcard', () => {
     const fixture = TestBed.createComponent(AiChatTextInputComponent);
     fixture.componentRef.setInput('acceptFileFormats', ['*']);
@@ -242,6 +258,26 @@ describe('AiChatTextInputComponent', () => {
     textarea.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', shiftKey: true }));
 
     expect(submittedSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not submit on Enter while IME composition is active', () => {
+    const fixture = TestBed.createComponent(AiChatTextInputComponent);
+    fixture.detectChanges();
+
+    const submittedSpy = vi.fn<(payload: AiChatTextInputSubmitPayload) => void>();
+    fixture.componentInstance.submitted.subscribe(submittedSpy);
+
+    const textarea = fixture.nativeElement.querySelector(
+      '.ai-chat-text-input__textarea',
+    ) as HTMLTextAreaElement;
+
+    textarea.value = '変換中';
+    textarea.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    textarea.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', isComposing: true }));
+
+    expect(submittedSpy).not.toHaveBeenCalled();
   });
 
   it('auto-resizes textarea and caps growth at 12 rows', () => {

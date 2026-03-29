@@ -1,5 +1,7 @@
-<section class="ai-chat-text-input" role="group" [attr.aria-label]="placeholder()">
-  <label class="ai-chat-text-input__sr-only" [attr.for]="textareaId">Message</label>
+<section class="ai-chat-text-input" role="group" [attr.aria-labelledby]="textareaLabelId">
+  <label class="ai-chat-text-input__sr-only" [id]="textareaLabelId" [attr.for]="textareaId">
+    {{ textareaAriaLabel() }}
+  </label>
 
   <textarea
     #textareaRef

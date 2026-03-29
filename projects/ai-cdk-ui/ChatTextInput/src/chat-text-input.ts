@@ -38,6 +38,7 @@ export class AiChatTextInputComponent {
    * Stable id for the textarea element.
    */
   readonly textareaId = `ai-chat-text-input-textarea-${this.instanceId}`;
+  readonly textareaLabelId = `ai-chat-text-input-textarea-label-${this.instanceId}`;
 
   /**
    * Input: Placeholder text displayed inside the textarea.
@@ -66,6 +67,13 @@ export class AiChatTextInputComponent {
    * Default: false
    */
   readonly allowMultipleFiles = input(false, { transform: booleanAttribute });
+
+  /**
+   * Input: Accessible label announced for the message textarea.
+   * Accepted values: string
+   * Default: 'Message'
+   */
+  readonly textareaAriaLabel = input('Message');
 
   /**
    * Input: Accessible label for the send button.
@@ -160,7 +168,7 @@ export class AiChatTextInputComponent {
    * @returns Void. Submits on Enter without Shift and preserves newline on Shift+Enter.
    */
   onTextareaKeydown(event: KeyboardEvent): void {
-    if (event.key !== 'Enter' || event.shiftKey) {
+    if (event.isComposing || event.key !== 'Enter' || event.shiftKey) {
       return;
     }
 

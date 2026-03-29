@@ -643,6 +643,13 @@ export const Overview: Story = {
                 </tr>
                 <tr>
                   <td>Input</td>
+                  <td><code>textareaAriaLabel</code></td>
+                  <td><code>string</code></td>
+                  <td><code>'Message'</code></td>
+                  <td>Accessible label announced for the message textarea.</td>
+                </tr>
+                <tr>
+                  <td>Input</td>
                   <td><code>sendAriaLabel</code></td>
                   <td><code>string</code></td>
                   <td><code>'Send message'</code></td>

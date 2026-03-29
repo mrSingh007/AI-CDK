@@ -29,7 +29,7 @@ export interface AiPayloadComponentRegistration {
 }
 
 export interface AiPayloadRenderRequest {
-  readonly component: string;
+  readonly name: string;
   readonly props?: Readonly<Record<string, unknown>>;
   readonly content?: string;
   readonly slots?: Readonly<Record<string, string>>;
@@ -116,14 +116,14 @@ export class AiPayloadRendererComponent implements OnDestroy {
    */
   private render(
     request: AiPayloadRenderRequest,
-    lookup: ReadonlyMap<string, AiPayloadComponentRegistration>
+    lookup: ReadonlyMap<string, AiPayloadComponentRegistration>,
   ): void {
     this.clearRender();
 
-    const registration = lookup.get(request.component);
+    const registration = lookup.get(request.name);
     if (!registration) {
       console.warn(
-        `[AiPayloadRendererComponent] Unknown component key: "${request.component}". Skipping render.`
+        `[AiPayloadRendererComponent] Unknown component key: "${request.name}". Skipping render.`,
       );
       return;
     }
@@ -147,7 +147,7 @@ export class AiPayloadRendererComponent implements OnDestroy {
    */
   private applyProps(
     componentRef: ComponentRef<unknown>,
-    props?: Readonly<Record<string, unknown>>
+    props?: Readonly<Record<string, unknown>>,
   ): void {
     if (!props) {
       return;
@@ -174,12 +174,12 @@ export class AiPayloadRendererComponent implements OnDestroy {
    * @param componentRef Rendered component reference.
    * @param eventMap Optional component event-to-handler map.
    * @returns Void. Registers listeners/subscriptions and tracks cleanup callbacks.
-   * 
+   *
    * Callback-style `@Input` (e.g. `btnClick`) — set via `setInput` as a function.
    */
   private bindEvents(
     componentRef: ComponentRef<unknown>,
-    eventMap?: Readonly<Record<string, string>>
+    eventMap?: Readonly<Record<string, string>>,
   ): void {
     if (!eventMap) {
       return;
@@ -233,7 +233,7 @@ export class AiPayloadRendererComponent implements OnDestroy {
    */
   private bindNativeClick(
     componentRef: ComponentRef<unknown>,
-    handler: (payload: unknown) => void
+    handler: (payload: unknown) => void,
   ): void {
     const hostElement = componentRef.location.nativeElement;
     if (!(hostElement instanceof Element)) {
@@ -259,7 +259,7 @@ export class AiPayloadRendererComponent implements OnDestroy {
    */
   private buildProjectableNodes(
     request: AiPayloadRenderRequest,
-    registration: AiPayloadComponentRegistration
+    registration: AiPayloadComponentRegistration,
   ): Node[][] | undefined {
     if (!registration.contentSlots) {
       return request.content ? [[this.document.createTextNode(request.content)]] : undefined;
@@ -272,7 +272,7 @@ export class AiPayloadRendererComponent implements OnDestroy {
 
     return registration.contentSlots.map((slotName) => {
       const text =
-        slotName === DEFAULT_SLOT_KEY ? request.content ?? '' : request.slots?.[slotName] ?? '';
+        slotName === DEFAULT_SLOT_KEY ? (request.content ?? '') : (request.slots?.[slotName] ?? '');
       return text ? [this.document.createTextNode(text)] : [];
     });
   }

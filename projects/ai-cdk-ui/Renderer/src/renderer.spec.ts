@@ -136,7 +136,7 @@ describe('AiPayloadRendererComponent', () => {
       { key: 'simple', component: StubSimpleComponent },
     ];
 
-    const fixture = createFixture({ component: 'simple', props: { label: 'Hello' } }, registry);
+    const fixture = createFixture({ name: 'simple', props: { label: 'Hello' } }, registry);
 
     const rendered = fixture.nativeElement.querySelector('ai-stub-simple');
     expect(rendered).toBeTruthy();
@@ -149,7 +149,7 @@ describe('AiPayloadRendererComponent', () => {
       { key: 'simple', component: StubSimpleComponent },
     ];
 
-    const fixture = createFixture({ component: 'unknown-widget' }, registry);
+    const fixture = createFixture({ name: 'unknown-widget' }, registry);
 
     expect(warnSpy).toHaveBeenCalledWith(
       expect.stringContaining('Unknown component key: "unknown-widget"')
@@ -163,10 +163,10 @@ describe('AiPayloadRendererComponent', () => {
       { key: 'simple', component: StubSimpleComponent },
     ];
 
-    const fixture = createFixture({ component: 'simple', props: { label: 'First' } }, registry);
+    const fixture = createFixture({ name: 'simple', props: { label: 'First' } }, registry);
     expect(fixture.nativeElement.textContent).toContain('First');
 
-    fixture.componentRef.setInput('renderRequest', { component: 'simple', props: { label: 'Second' } });
+    fixture.componentRef.setInput('renderRequest', { name: 'simple', props: { label: 'Second' } });
     fixture.detectChanges();
 
     expect(fixture.nativeElement.textContent).toContain('Second');
@@ -177,7 +177,7 @@ describe('AiPayloadRendererComponent', () => {
       { key: 'simple', component: StubSimpleComponent },
     ];
 
-    const fixture = createFixture({ component: 'simple', props: { label: 'Test Value' } }, registry);
+    const fixture = createFixture({ name: 'simple', props: { label: 'Test Value' } }, registry);
 
     expect(fixture.nativeElement.textContent).toContain('Test Value');
   });
@@ -187,7 +187,7 @@ describe('AiPayloadRendererComponent', () => {
       { key: 'cva', component: StubCvaComponent },
     ];
 
-    const fixture = createFixture({ component: 'cva', props: { ngModel: 'initial' } }, registry);
+    const fixture = createFixture({ name: 'cva', props: { ngModel: 'initial' } }, registry);
     const cvaInstance = fixture.debugElement.children[0]?.componentInstance as StubCvaComponent;
 
     expect(cvaInstance.value).toBe('initial');
@@ -199,7 +199,7 @@ describe('AiPayloadRendererComponent', () => {
       { key: 'clickable', component: StubClickComponent, events: { click: 'onClick' } },
     ];
 
-    const fixture = createFixture({ component: 'clickable' }, registry, { onClick: handler });
+    const fixture = createFixture({ name: 'clickable' }, registry, { onClick: handler });
     const hostElement = fixture.nativeElement.querySelector('ai-stub-click') as HTMLElement;
     hostElement.click();
 
@@ -213,7 +213,7 @@ describe('AiPayloadRendererComponent', () => {
       { key: 'output', component: StubOutputComponent, events: { valueChange: 'onValueChange' } },
     ];
 
-    const fixture = createFixture({ component: 'output' }, registry, { onValueChange: handler });
+    const fixture = createFixture({ name: 'output' }, registry, { onValueChange: handler });
     const instance = fixture.debugElement.children[0].componentInstance as StubOutputComponent;
 
     instance.valueChange.emit('hello');
@@ -227,7 +227,7 @@ describe('AiPayloadRendererComponent', () => {
       { key: 'callback', component: StubCallbackInputComponent, events: { onClick: 'onAction' } },
     ];
 
-    const fixture = createFixture({ component: 'callback' }, registry, { onAction: handler });
+    const fixture = createFixture({ name: 'callback' }, registry, { onAction: handler });
     const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
     button.click();
     fixture.detectChanges();
@@ -241,7 +241,7 @@ describe('AiPayloadRendererComponent', () => {
       { key: 'cva', component: StubCvaComponent, events: { ngModelChange: 'onModelChange' } },
     ];
 
-    const fixture = createFixture({ component: 'cva' }, registry, { onModelChange: handler });
+    const fixture = createFixture({ name: 'cva' }, registry, { onModelChange: handler });
     const cvaInstance = fixture.debugElement.children[0].componentInstance as StubCvaComponent;
 
     cvaInstance.simulateChange('new value');
@@ -254,7 +254,7 @@ describe('AiPayloadRendererComponent', () => {
       { key: 'slot', component: StubDefaultSlotComponent },
     ];
 
-    const fixture = createFixture({ component: 'slot', content: 'Projected text' }, registry);
+    const fixture = createFixture({ name: 'slot', content: 'Projected text' }, registry);
 
     const slotElement = fixture.nativeElement.querySelector('.slot');
     expect(slotElement.textContent).toContain('Projected text');
@@ -271,7 +271,7 @@ describe('AiPayloadRendererComponent', () => {
 
     const fixture = createFixture(
       {
-        component: 'named',
+        name: 'named',
         content: 'Body text',
         slots: { header: 'Header text', footer: 'Footer text' },
       },
@@ -294,7 +294,7 @@ describe('AiPayloadRendererComponent', () => {
       },
     ];
 
-    const fixture = createFixture({ component: 'output' }, registry, { onValueChange: handler });
+    const fixture = createFixture({ name: 'output' }, registry, { onValueChange: handler });
     const instance = fixture.debugElement.children[0]
       .componentInstance as StubSubscribableOutputComponent;
 

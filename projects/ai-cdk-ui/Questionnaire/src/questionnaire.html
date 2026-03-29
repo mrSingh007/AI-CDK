@@ -44,8 +44,13 @@
 
     @if (showNextButton()) {
       <div class="ai-questionnaire__actions">
-        <button class="ai-questionnaire__next" type="button" (click)="submitCurrentAnswer()">
-          Next
+        <button
+          class="ai-questionnaire__next"
+          type="button"
+          [disabled]="!canSubmitCurrentAnswer()"
+          (click)="submitCurrentAnswer()"
+        >
+          {{ isFinalQuestion() ? 'Finish' : 'Next' }}
         </button>
       </div>
     }

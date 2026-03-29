@@ -15,7 +15,7 @@ The library is not limited to AG-UI or the Vercel AI protocol. It also supports 
 ## Packages
 
 - `@ai-cdk/ui`
-- `@ai-cdk/chat` (WIP)
+- `@ai-cdk/ag-ui`
 
 ## Development
 

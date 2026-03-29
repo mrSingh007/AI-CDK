@@ -3,6 +3,7 @@
 `@ai-cdk/ui` is an Angular library of AI chatbot building blocks for chat and agent interfaces.
 
 It provides reusable UI elements and a payload renderer so you can build protocol-driven chatbot experiences quickly.
+It also includes `@ai-cdk/ui/Markdown` for sanitized assistant-message markdown rendering.
 
 Check [Storybook](https://mrsingh007.github.io/AI-CDK/) for all components and changes.
 Contribute to project [HERE](https://github.com/mrSingh007/AI-CDK/)

@@ -99,7 +99,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'Card payload with named slots',
     description: 'Projects header/body/footer content into AiCardComponent.',
     renderRequest: {
-      component: 'card',
+      name: 'card',
       props: {
         clickable: true,
       },
@@ -115,7 +115,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'Output() events payload',
     description: 'Passes complex props into AiQuestionnaireComponent and handles outputs.',
     renderRequest: {
-      component: 'questionnaire',
+      name: 'questionnaire',
       props: {
         questions: QUESTIONNAIRE_ITEMS,
         allowInput: true,
@@ -128,7 +128,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'Human feedback payload',
     description: 'Renders approval controls and maps confirmed/rejected outputs.',
     renderRequest: {
-      component: 'humanFeedback',
+      name: 'humanFeedback',
       props: {
         text: 'Should we execute deployment plan?',
         approveButtonText: 'Approve',
@@ -141,7 +141,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'Callback input bridge payload',
     description: 'Maps events.onAction to callback-style input on a dynamic component.',
     renderRequest: {
-      component: 'callbackInput',
+      name: 'callbackInput',
       props: {
         buttonText: 'Emit lorem callback payload',
         summary: 'Click to call input callback bound by AiPayloadRendererComponent.',
@@ -153,7 +153,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'Native host click payload',
     description: 'Uses reserved events.click to subscribe to host native click events.',
     renderRequest: {
-      component: 'nativeClick',
+      name: 'nativeClick',
       props: {
         label: 'Any click inside this component bubbles to the host listener.',
       },
@@ -164,7 +164,7 @@ const PAYLOAD_ITEMS: readonly PayloadShowcaseItem[] = [
     title: 'ControlValueAccessor bridge payload',
     description: 'Bridges ngModel and ngModelChange using CVA-style methods.',
     renderRequest: {
-      component: 'modelBridge',
+      name: 'modelBridge',
       props: {
         label: 'Renderer sets writeValue via ngModel then listens to ngModelChange.',
         ngModel: 'initial payload model',
@@ -480,7 +480,8 @@ export const Overview: Story = {
             <h2 id="ai-payload-intro" class="ai-payload-docs__title">AiPayloadRendererComponent</h2>
             <p class="ai-payload-docs__lead">
               AiPayloadRendererComponent resolves protocol payloads to registered components and bridges
-              outputs, callback inputs, native click events, and CVA-style ngModel updates.
+              outputs, callback inputs, native click events, and CVA-style ngModel updates. 
+              Not only ai-cdk components but any other angular components can be used with this renderer.
             </p>
             <pre class="ai-payload-docs__code"><code>import &#123; AiPayloadRendererComponent &#125; from '@ai-cdk/ui/Renderer';</code></pre>
           </section>
@@ -582,8 +583,10 @@ export const Overview: Story = {
           </section>
 
           <section class="ai-payload-docs__section" aria-labelledby="ai-payload-variants">
-            <h2 id="ai-payload-variants" class="ai-payload-docs__title">Styled variants previews</h2>
-            <p class="ai-payload-docs__lead">Preview-only payload variants rendered through the same dynamic host.</p>
+            <h2 id="ai-payload-variants" class="ai-payload-docs__title">Examples</h2>
+            <p class="ai-payload-docs__lead">
+            Preview-only payload variants rendered through the same dynamic host.
+            </p>
 
             <div class="ai-payload-docs__layout">
               <aside aria-label="Payload catalog">

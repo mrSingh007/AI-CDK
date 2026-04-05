@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
+    "prepare": "node scripts/setup-git-hooks.mjs",
     "start": "ng serve storybook-host --port 4200",
     "build": "ng build ai-cdk-ui && ng build ai-cdk-ag-ui",
     "watch": "ng build ai-cdk-ui --watch --configuration development",
@@ -11,6 +12,9 @@
     "lint:fix": "ng lint ai-cdk-ui --fix && ng lint ai-cdk-ag-ui --fix && ng lint storybook-host --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "sandbox:stash": "node scripts/sandbox/save-patch.mjs",
+    "sandbox:check-clean": "node scripts/sandbox/check-clean.mjs",
+    "sandbox:check-commit-ready": "node scripts/sandbox/check-commit-ready.mjs",
     "storybook": "STORYBOOK_DISABLE_TELEMETRY=1 HOME=. ng run storybook-host:storybook",
     "build-storybook": "STORYBOOK_DISABLE_TELEMETRY=1 HOME=. ng run storybook-host:build-storybook"
   },

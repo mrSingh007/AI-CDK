@@ -88,7 +88,6 @@
             "browser": "projects/storybook-host/src/main.ts",
             "index": "projects/storybook-host/src/index.html",
             "tsConfig": "projects/storybook-host/tsconfig.app.json",
-            "styles": ["projects/storybook-host/src/styles.css"],
             "assets": []
           },
           "configurations": {
